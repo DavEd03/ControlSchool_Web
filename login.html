@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width= device-width, initial-scale=1.0">
+    <title>Control School</title>
+    <link rel="stylesheet" type="text/css" href="css/login-css.css">
+    <link rel="icon" type="image/jpg" href="images/Logov2_rmb.png"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+<script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js"></script>
+    
+    <script type="module" src="js/login.js" defer></script>
+
+</head>
+<body style="background-color: #1E1E1E;">
+    <header>
+        <img src="images/Logov2_rmb.png" class="logo">
+    </header>
+
+   <div class="contenedor">
+
+    <section>
+        <form>
+
+       
+        <table class="login-form" cellspacing="20px">
+            <tr>
+                <td><label for="user" class="lbl-input">Usuario</label></td>
+            </tr>
+            <tr>
+                <td><input type="email" name="user" class="input" id="email" placeholder="Agregar"></td>
+            </tr>
+            <tr>
+                <td><label for="password" class="lbl-input">Contraseña</label></td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="password" name="password" class="input"  id="password"placeholder="Agregar">
+                </td>
+            </tr>
+            <tr>
+                <td><a href="">Recuperar Contraseña</a></td>
+            </tr>
+            <tr>
+                <td><input type="submit" value="Iniciar Sesión" class="btn-submit" id="btnIniciar"></td>
+            </tr>
+        </table>
+    </form>
+    </section>
+
+   </div>
+    <footer>
+
+    </footer>
+</body>
+</html>
