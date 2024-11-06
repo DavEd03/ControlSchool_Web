@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expediente</title>
+    <link rel="stylesheet" href="css/style1.css">
+    <link rel="icon" type="image/jpg" href="images/Logov2_rmb.png"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <script type="module" src="/js/connect.js" defer></script>
+</head>
+<body style="background-color: #1E1E1E;">
+    <div class="contenedor">
+        <aside>
+            <nav>
+                    <span class="logo_menu"><img src="images/Logov2_rmb.png" ></span>
+                <ul>
+                    <li><a><img src="images/home.png">Inicio</a></li>
+                    <li><a><img src="images/book.png">Materias</a></li>
+                    <li><a><img src="images/folder.png" href="calificaciones.html">Boletas</a></li>
+                    <li><a><img src="images/attach.png">Expedientes</a></li>
+                    <li><a><img src="images/calendar.png">Eventos</a></li>
+                    <li><a><img src="images/add_user.png" >Agregar Alumno</a></li>
+                </ul>
+            </nav>
+        </aside>
+           
+        <div class="tabla-contenedor">
+            <span class="banner">
+                Mostrar por: 
+                <p>
+                   Carrera <select id="mostrar">
+
+                </select>
+                </p>
+                <p>
+                    
+                    Cuatrimestre<select id="mostrar2">
+                        
+                    </select>
+                </p>
+            </span>
+            <span class="tabla1">
+              <h2>Expediente</h2>
+            <table id="table-body" border="1">
+             <tr>
+                <th>Matrícula</th>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Carrera</th>
+                <th>Cuatrimestre</th>
+                <th>Correo</th>
+                <th>Contraseña</th>
+                <th>Acciones</th>
+             </tr>
+             
+             <tr>
+                <td>210904091</td>
+                <td>David Eduardo</td>
+                <td>Cisneros Mejia</td>
+                <td>DGS</td>
+                <td>10</td>
+                <td>david.edu.cisne.2d@gmail.com</td>
+                <td>210904091</td>
+                <td>
+                    <button type='button' class='btn btn-warning' data-toggle='modal' data-target='#editar'> 
+                    <i class='fas fa-pen'></i></button>
+                    <button type='button' class='btn btn-danger' data-toggle='modal' data-target='#eliminar'> 
+                    <i class='fas fa-trash'></i></button>
+                </td>
+             </tr>
+            </table>
+            </span>
+            <button type="button" class="btn-add" data-toggle="modal" data-target="#myModal"> 
+                Abrir Modal 
+            </button>
+        </div>
+    </div>
+
+
+   <!--Modal--> 
+   <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"> <div class="modal-dialog" role="document"> 
+    <div class="modal-content"> <div class="modal-header"> 
+        <h5 class="modal-title" id="exampleModalLabel">Agregar Alumno</h5> 
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"> 
+            <span aria-hidden="true">&times;</span> </button> </div> 
+            <div class="modal-body"> 
+               <form id="register-form">
+                <table>
+                    <tr>
+                        <td colspan="2">
+                            <label>Matrícula:</label>
+                            <input type="text" name="matricula" id="matricula">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label>Nombre:</label></td>
+                        <td><input type="text" name="Nombre" id="nombre"></td>
+                    </tr>
+                    <tr>
+                        <td><label>Apellido:</label></td>
+                        <td><input type="text" name="Apellido" id="apellido"></td>
+                    </tr>
+                    <tr>
+                        <td><label>Correo:</label></td></td>
+                        <td><input type="mail" name="Correo" id="correo"></td>
+                    <tr>
+                        <td><label>Contraseña:</label></td>
+                        <td><input type="password" name="password" id="password"></td>
+                    </tr>
+                    <tr>
+                        <td>
+                        <label>Carrera:</label>
+                            <select name="carrera" id="carrera">
+                                <option value="DGS">Desarrollo en Gestion de Software</option>
+                                <option value="MECA">Mecatronica</option>
+                                <option value="ASYP">Agricultura</option>
+                                <option value="LINYM">Mercadotecnia</option>
+                                <option value="DN">Desarrollo de Negocios</option>
+                            </select>
+                        </td>
+                         <td>
+                            <label>Cuatrimestre:</label>
+                            <select name="cuatri" id="cuatri">
+                                <option value="1">1</option>
+                                <option value="4">4</option>
+                                <option value="7">7</option>
+                                <option value="10">10</option>
+                            </select>
+                        </td>
+                    </tr>
+                </table>
+                 </div> 
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button> 
+                    <button type="submit" class="btn-add1" id="btn-success">Agregar Usuario</button> 
+                </div> 
+            </div> 
+        </div> 
+    </div> 
+</div>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script> 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script> 
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>

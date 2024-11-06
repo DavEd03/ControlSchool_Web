@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ejemplo de Tabla y Modal con Firebase</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
-    
+    <script src="/js/db.js"></script>
 </head>
 <body>
 <div class="container">
@@ -13,14 +13,20 @@
     <table class="table">
         <thead>
             <tr>
-                <th>ID</th>
+                <th>Matrícula</th>
                 <th>Nombre</th>
-                <th>Acción</th>
+                <th>Carrera</th>
+                <th>Cuatrimestre</th>
+                <th>Lista de documentos</th>
+                <th>Acciones</th>
             </tr>
         </thead>
         <tbody id="table-body">
             <!-- Los datos se añadirán aquí dinámicamente -->
         </tbody>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal"> 
+            Abrir Modal 
+        </button>
     </table>
 </div>
 
@@ -48,9 +54,10 @@
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-database.js"></script>
-<script src="/js/db.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-database.js"></script>
+
+
 
 </body>
 </html>
