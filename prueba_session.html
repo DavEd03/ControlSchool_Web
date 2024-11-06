@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estado de Sesión Firebase</title>
+</head>
+<body>
+    <h1>Verificar Sesión de Firebase</h1>
+    <div id="status"></div>
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js"></script>
+    <script>
+        // Configuración de Firebase
+        const firebaseConfig = {
+            apiKey: "AIzaSyBIb5nB7I0E5BM2ZaKYQHv0aSWCC2FMBGE",
+            authDomain: "controlschool-9fdc0.firebaseapp.com",
+            projectId: "controlschool-9fdc0",
+            storageBucket: "controlschool-9fdc0.appspot.com",
+            messagingSenderId: "999306012944",
+            appId: "1:999306012944:web:be011a6be63004f53b9d95",
+            measurementId: "G-T1CCLT7RKX"
+        };
+        // Inicializa Firebase
+        firebase.initializeApp(firebaseConfig);
+        
+        // Verifica el estado de la sesión
+        firebase.auth().onAuthStateChanged((user) => {
+            if (user) {
+                console.log("Sesión activa para el usuario:", user.email);
+                document.getElementById('status').innerText = `Sesión activa para: ${user.email}`;
+            } else {
+                console.log("No hay sesión activa.");
+                document.getElementById('status').innerText = "No hay sesión activa.";
+            }
+        });
+    </script>
+</body>
+</html>
