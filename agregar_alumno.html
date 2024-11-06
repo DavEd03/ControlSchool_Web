@@ -45,9 +45,10 @@
                 </p>
             </span>
             <span class="tabla1">
-              <h2>Expediente</h2>
+              <h2>Agregar Alumno</h2>
             <table id="table-body" border="1">
-             <tr>
+                <thead>
+                    <tr>
                 <th>Matrícula</th>
                 <th>Nombre</th>
                 <th>Apellido</th>
@@ -57,22 +58,11 @@
                 <th>Contraseña</th>
                 <th>Acciones</th>
              </tr>
+                </thead>
              
-             <tr>
-                <td>210904091</td>
-                <td>David Eduardo</td>
-                <td>Cisneros Mejia</td>
-                <td>DGS</td>
-                <td>10</td>
-                <td>david.edu.cisne.2d@gmail.com</td>
-                <td>210904091</td>
-                <td>
-                    <button type='button' class='btn btn-warning' data-toggle='modal' data-target='#editar'> 
-                    <i class='fas fa-pen'></i></button>
-                    <button type='button' class='btn btn-danger' data-toggle='modal' data-target='#eliminar'> 
-                    <i class='fas fa-trash'></i></button>
-                </td>
-             </tr>
+             <tbody>
+
+             </tbody>
             </table>
             </span>
             <button type="button" class="btn-add" data-toggle="modal" data-target="#myModal"> 
@@ -116,6 +106,7 @@
                         <td>
                         <label>Carrera:</label>
                             <select name="carrera" id="carrera">
+                                <option value="">---Seleccione------</option>
                                 <option value="DGS">Desarrollo en Gestion de Software</option>
                                 <option value="MECA">Mecatronica</option>
                                 <option value="ASYP">Agricultura</option>
@@ -126,6 +117,7 @@
                          <td>
                             <label>Cuatrimestre:</label>
                             <select name="cuatri" id="cuatri">
+                                <option value="">---Seleccione------</option>
                                 <option value="1">1</option>
                                 <option value="4">4</option>
                                 <option value="7">7</option>

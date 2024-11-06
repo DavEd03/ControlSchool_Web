@@ -3,7 +3,8 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.2/fireba
 
 import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-auth.js";
 
-import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-database.js";
+import { getDatabase, ref, set,onValue } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-database.js";
+
 const firebaseConfig = {
     apiKey: "AIzaSyBIb5nB7I0E5BM2ZaKYQHv0aSWCC2FMBGE",
     authDomain: "controlschool-9fdc0.firebaseapp.com",
@@ -18,6 +19,7 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const database = getDatabase(app);
 
+//Agregar datos a la base de datos
 const submit = document.getElementById('btn-success');
 submit.addEventListener("click", function (event) {
     event.preventDefault();
@@ -47,8 +49,8 @@ submit.addEventListener("click", function (event) {
             })
             .then(() => {
                 // Guardar los datos en el nodo "Alumnos"
-                set(ref(database, '/Alumnos/' + Carrera1 + '/' + Matricula1), {
-                    Calificaciones
+                set(ref(database, '/Alumnos/' + Carrera1 + '/' + "Calificaciones"+ Matricula1), {
+                    Status:"Sin registros"
                 })
                 .then(() => {
                     alert("Registro exitoso: Tus datos han sido guardados correctamente.");
@@ -67,3 +69,37 @@ submit.addEventListener("click", function (event) {
             alert("ERROR: Ha ocurrido un problema al crear el usuario: " + error.message);
         });
 });
+
+function loadData() {
+    const dbRef = ref(database, 'Cuentas/');
+    onValue(dbRef, (snapshot) => {
+        const tableBody = document.getElementById("table-body").getElementsByTagName('tbody')[0];
+        tableBody.innerHTML = ""; // Limpiar la tabla antes de agregar nuevos datos
+        const data = snapshot.val();
+            
+            for (const uid in data) {
+                const row = tableBody.insertRow();
+                const cellCampo1 = row.insertCell(0);
+                const cellCampo2 = row.insertCell(1);
+                const cellCampo3 = row.insertCell(2);
+                const cellCampo4 = row.insertCell(3);
+                const cellCampo5 = row.insertCell(4);
+                const cellCampo6 = row.insertCell(5);
+                const cellCampo7 = row.insertCell(6);
+                
+                 // Muestra el UID
+                cellCampo1.textContent = data[uid].Matricula || ""; // Reemplaza 'campo1' con el nombre real del campo
+                cellCampo2.textContent = data[uid].Nombre || ""; // Reemplaza 'campo2' con el nombre real del campo
+                cellCampo3.textContent = data[uid].Apellidos || ""; // Reemplaza 'campo3' con el nombre real del campo
+                cellCampo4.textContent = data[uid].Carrera || ""; // Reemplaza 'campo4' con el nombre real del campo
+                cellCampo5.textContent = data[uid].Cuatri || ""; // Reemplaza 'campo5' con el nombre real del campo
+                cellCampo6.textContent = data[uid].Correo || ""; // Reemplaza 'campo6' con el nombre real del campo
+                cellCampo7.textContent = data[uid].Password || ""; // Reemplaza 'campo7' con el nombre real del campo
+            }
+        });
+    }
+
+    // Ejecutar la función loadData al cargar la página
+    document.addEventListener('DOMContentLoaded', (event) => {
+        loadData();
+    });
