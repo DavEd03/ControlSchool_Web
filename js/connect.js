@@ -86,6 +86,7 @@ function loadData() {
                 const cellCampo5 = row.insertCell(4);
                 const cellCampo6 = row.insertCell(5);
                 const cellCampo7 = row.insertCell(6);
+                const cellActions = row.insertCell(7);
                 
                  // Muestra el UID
                 cellCampo1.textContent = data[uid].Matricula || ""; // Reemplaza 'campo1' con el nombre real del campo
@@ -95,6 +96,26 @@ function loadData() {
                 cellCampo5.textContent = data[uid].Cuatri || ""; // Reemplaza 'campo5' con el nombre real del campo
                 cellCampo6.textContent = data[uid].Correo || ""; // Reemplaza 'campo6' con el nombre real del campo
                 cellCampo7.textContent = data[uid].Password || ""; // Reemplaza 'campo7' con el nombre real del campo
+            
+             // Crear botones para editar y eliminar
+             const editButton = document.createElement('button');
+             editButton.textContent = 'Editar';
+             editButton.className = 'btn btn-primary btn-sm';
+             editButton.onclick = function() {
+                 openEditModal(uid, data[uid]); // Abre el modal de edición
+             };
+ 
+             const deleteButton = document.createElement('button');
+             deleteButton.textContent = 'Eliminar';
+             deleteButton.className = 'btn btn-danger btn-sm';
+             deleteButton.onclick = function() {
+                 openDeleteModal(uid); // Abre el modal de eliminación
+             };
+ 
+             // Añadir los botones a la celda de acciones
+             cellActions.appendChild(editButton);
+             cellActions.appendChild(deleteButton);
+            
             }
         });
     }
@@ -103,3 +124,15 @@ function loadData() {
     document.addEventListener('DOMContentLoaded', (event) => {
         loadData();
     });
+
+    function openEditModal(recordId, recordData) {
+        // Establecer los valores actuales en el modal de edición
+        document.getElementById('dataField').value = recordData.Nombre; // Por ejemplo, puedes poner el nombre en un campo de entrada
+        $('#editModal').data('recordId', recordId); // Guardar el ID en el modal
+        $('#editModal').modal('show'); // Mostrar el modal de edición
+    }
+    
+    function openDeleteModal(recordId) {
+        $('#deleteModal').data('recordId', recordId); // Guardar el ID en el modal
+        $('#deleteModal').modal('show'); // Mostrar el modal de eliminación
+    }
