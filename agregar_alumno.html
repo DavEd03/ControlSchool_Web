@@ -13,37 +13,36 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <script type="module" src="/js/connect.js" ></script>
 </head>
-<body style="background-color: #1E1E1E;">
+<body style="background-color: #3B4445;">
     <div class="contenedor">
         <aside>
             <nav>
                     <span class="logo_menu"><img src="images/Logov2_rmb.png" ></span>
-                <ul>
-                    <li><a><img src="images/home.png">Inicio</a></li>
-                    <li><a><img src="images/book.png">Materias</a></li>
-                    <li><a><img src="images/folder.png" href="calificaciones.html">Boletas</a></li>
-                    <li><a><img src="images/attach.png">Expedientes</a></li>
-                    <li><a><img src="images/calendar.png">Eventos</a></li>
-                    <li><a><img src="images/add_user.png" >Agregar Alumno</a></li>
-                </ul>
+                    <ul>
+                      <li><a href="menu.html"><img src="images/home.png">Inicio</a></li>
+                      <li><a href="calificaciones.html"><img src="images/folder.png">Calificaciones</a></li>
+                      <li><a href="expediente.html"><img src="images/attach.png">Expedientes</a></li>
+                      <li><a href="eventos.html"><img src="images/calendar.png">Eventos</a></li>
+                      <li><a href="agregar_alumno.html"><img src="images/add_user.png" >Agregar Usuario</a></li>
+                  </ul>
             </nav>
         </aside>
            
         <div class="tabla-contenedor">
-            <span class="banner">
-                Mostrar por: 
-                <p>
-                   Carrera <select id="mostrar">
+          <span class="banner">
+            Mostrar por: 
+            <p>
+               Carrera <select id="mostrar">
 
-                </select>
-                </p>
-                <p>
+            </select>
+            </p>
+            <p>
+                
+                Cuatrimestre<select id="mostrar2">
                     
-                    Cuatrimestre<select id="mostrar2">
-                        
-                    </select>
-                </p>
-            </span>
+                </select>
+            </p>
+        </span>
             <span class="tabla1">
               <h2>Agregar Alumno</h2>
             <table id="table-body" border="1" cellspacing="1">

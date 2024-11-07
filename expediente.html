@@ -8,22 +8,20 @@
     <link rel="icon" type="image/jpg" href="images/Logov2_rmb.png"/>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
 </head>
-<body style="background-color: #1E1E1E;">
+<body style="background-color: #3B4445;">
     <div class="contenedor">
         <aside>
             <nav>
                     <span class="logo_menu"><img src="images/Logov2_rmb.png" ></span>
-                <ul>
-                    <li><a><img src="images/home.png">Inicio</a></li>
-                    <li><a><img src="images/book.png">Materias</a></li>
-                    <li><a><img src="images/folder.png" href="calificaciones.html">Boletas</a></li>
-                    <li><a><img src="images/attach.png">Expedientes</a></li>
-                    <li><a><img src="images/calendar.png">Eventos</a></li>
-                    <li><a><img src="images/add_user.png" >Agregar Alumno</a></li>
-                </ul>
+                    <ul>
+                        <li><a href="menu.html"><img src="images/home.png">Inicio</a></li>
+                        <li><a href="calificaciones.html"><img src="images/folder.png">Calificaciones</a></li>
+                        <li><a href="expediente.html"><img src="images/attach.png">Expedientes</a></li>
+                        <li><a href="eventos.html"><img src="images/calendar.png">Eventos</a></li>
+                        <li><a href="agregar_alumno.html"><img src="images/add_user.png" >Agregar Usuario</a></li>
+                    </ul>
             </nav>
         </aside>
            
@@ -55,13 +53,9 @@
              </tr> 
             </table>
             </span>
-            <button type="button" class="btn-add" data-toggle="modal" data-target="#myModal"> 
-                Abrir Modal 
-            </button>
+            
         </div>
     </div>
-
-
    <!--Modal--> 
    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"> <div class="modal-dialog" role="document"> 
     <div class="modal-content"> <div class="modal-header"> 
@@ -77,9 +71,8 @@
                     <button type="submit" class="btn btn-primary">Guardar cambios</button> 
                 </div> 
             </div> 
-        </div> 
+        </div>
     </div> 
-</div>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script> 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script> 
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
