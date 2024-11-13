@@ -3,7 +3,8 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.2/fireba
 
 import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-auth.js";
 
-import { getDatabase, ref, set,onValue } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-database.js";
+import { getDatabase, ref, set,onValue, update } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-database.js";
+
 
 const firebaseConfig = {
     apiKey: "AIzaSyBIb5nB7I0E5BM2ZaKYQHv0aSWCC2FMBGE",
@@ -87,7 +88,9 @@ function loadData() {
              // Crear botones para editar y eliminar
              const editButton = document.createElement('button');
              editButton.textContent = 'Editar';
+             editButton.id="btn-open-modal"
              editButton.className = 'btn btn-primary btn-sm';
+             editButton.setAttribute('data-uid', uid);
              editButton.onclick = function() {
                  openEditModal(uid, data[uid]); // Abre el modal de edición
              };
@@ -143,6 +146,7 @@ function loadData() {
     const modificar=document.getElementById('saveButton');
     modificar.addEventListener('click', function(event){
         event.preventDefault();
+        const uid = document.getElementById('btn-open-modal').getAttribute('data-uid');
         const Correo1 = document.getElementById('correo1').value;
         const password1 = document.getElementById('password1').value;
         const Nombre1 = document.getElementById('nombre1').value;
@@ -150,6 +154,24 @@ function loadData() {
         const Cuatrimestre1 = document.getElementById('cuatri1').value;
         const Matricula1 = document.getElementById('matricula1').value;
         const Apellidos1 = document.getElementById('apellido1').value;
+        update(ref(database, '/Cuentas/' + uid), {
+            Apellidos: Apellidos1,
+            Carrera: Carrera1,
+            Nombre: Nombre1,
+            Cuatri: Cuatrimestre1,
+            Matricula: Matricula1,
+            Password: password1, // Ten cuidado al manejar contraseñas
+            Correo: Correo1
+        })
+        .then(() => {
+            alert("Datos actualizados exitosamente.");
+            
+        })
+        .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            alert("ERROR: Ha ocurrido un problema al actualizar los datos: " + error.message);
+        }); º
     
     
     
