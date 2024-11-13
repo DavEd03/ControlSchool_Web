@@ -47,21 +47,8 @@ submit.addEventListener("click", function (event) {
                 Password: password1,
                 Correo: Correo1
             })
-            .then(() => {
-                // Guardar los datos en el nodo "Alumnos"
-                set(ref(database, '/Alumnos/' + Carrera1 + '/' + "Calificaciones"+ Matricula1), {
-                    Status:"Sin registros"
-                })
-                .then(() => {
-                    alert("Registro exitoso: Tus datos han sido guardados correctamente.");
-                })
-                .catch((error) => {
-                    alert("ERROR: Ha ocurrido un problema al guardar los datos en Alumnos: " + error.message);
-                });
-            })
-            .catch((error) => {
-                alert("ERROR: Ha ocurrido un problema al guardar los datos en Cuentas: " + error.message);
-            });
+            alert("Registro exitoso: Tus datos han sido guardados correctamente.");
+            limpiar();
         })
         .catch((error) => {
             const errorCode = error.code;
@@ -127,7 +114,13 @@ function loadData() {
 
     function openEditModal(recordId, recordData) {
         // Establecer los valores actuales en el modal de edición
-        document.getElementById('dataField').value = recordData.Nombre; // Por ejemplo, puedes poner el nombre en un campo de entrada
+        document.getElementById('nombre1').value = recordData.Nombre;
+        document.getElementById('matricula1').value=recordData.Matricula;
+        document.getElementById('apellido1').value=recordData.Apellidos; 
+        document.getElementById('correo1').value=recordData.Correo;
+        document.getElementById('password1').value=recordData.Password;
+        document.getElementById('carrera1').value=recordData.Carrera;
+        document.getElementById('cuatri1').value=recordData.Cuatri;
         $('#editModal').data('recordId', recordId); // Guardar el ID en el modal
         $('#editModal').modal('show'); // Mostrar el modal de edición
     }
@@ -136,3 +129,28 @@ function loadData() {
         $('#deleteModal').data('recordId', recordId); // Guardar el ID en el modal
         $('#deleteModal').modal('show'); // Mostrar el modal de eliminación
     }
+    function limpiar(){
+        document.getElementById('nombre').value = "";
+        document.getElementById('matricula').value = "";
+        document.getElementById('apellido').value = "";
+        document.getElementById('correo').value = "";
+        document.getElementById('password').value = "";
+        document.getElementById('carrera').value = "";
+        document.getElementById('cuatri').value = "";
+    }
+    
+    //modificar datos en la base de datos
+    const modificar=document.getElementById('saveButton');
+    modificar.addEventListener('click', function(event){
+        event.preventDefault();
+        const Correo1 = document.getElementById('correo1').value;
+        const password1 = document.getElementById('password1').value;
+        const Nombre1 = document.getElementById('nombre1').value;
+        const Carrera1 = document.getElementById('carrera1').value;
+        const Cuatrimestre1 = document.getElementById('cuatri1').value;
+        const Matricula1 = document.getElementById('matricula1').value;
+        const Apellidos1 = document.getElementById('apellido1').value;
+    
+    
+    
+    })
