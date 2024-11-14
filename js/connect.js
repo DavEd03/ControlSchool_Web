@@ -90,7 +90,7 @@ function loadData() {
              editButton.textContent = 'Editar';
              editButton.id="btn-open-modal"
              editButton.className = 'btn btn-primary btn-sm';
-             editButton.setAttribute('data-uid', uid);
+             editButton.setAttribute('data-uid',data[uid]);
              editButton.onclick = function() {
                  openEditModal(uid, data[uid]); // Abre el modal de edición
              };
@@ -154,7 +154,10 @@ function loadData() {
         const Cuatrimestre1 = document.getElementById('cuatri1').value;
         const Matricula1 = document.getElementById('matricula1').value;
         const Apellidos1 = document.getElementById('apellido1').value;
-        update(ref(database, '/Cuentas/' + uid), {
+       
+       
+       
+       /* update(ref(database, '/Cuentas/' + uid), {
             Apellidos: Apellidos1,
             Carrera: Carrera1,
             Nombre: Nombre1,
@@ -165,14 +168,15 @@ function loadData() {
         })
         .then(() => {
             alert("Datos actualizados exitosamente.");
+            location.reload();
             
         })
         .catch((error) => {
             const errorCode = error.code;
             const errorMessage = error.message;
             alert("ERROR: Ha ocurrido un problema al actualizar los datos: " + error.message);
-        }); º
-    
+        }); */
+        alert(uid);
     
     
     })
