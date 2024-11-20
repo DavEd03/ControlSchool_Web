@@ -75,6 +75,12 @@ function loadData() {
                 const cellCampo6 = row.insertCell(5);
                 const cellCampo7 = row.insertCell(6);
                 const cellActions = row.insertCell(7);
+                // Dentro del bucle for que genera las filas de la tabla
+                const hiddenInput = document.createElement('input');
+                hiddenInput.type = 'hidden';
+                hiddenInput.value = uid; // Guardar el UID en el campo oculto
+                hiddenInput.id = 'uid-' + uid; // Asignar un ID único si es necesario
+                row.appendChild(hiddenInput); // Agregar el campo oculto a la fila
                 
                  // Muestra el UID
                 cellCampo1.textContent = data[uid].Matricula || ""; // Reemplaza 'campo1' con el nombre real del campo
@@ -89,8 +95,6 @@ function loadData() {
              const editButton = document.createElement('button');
              editButton.textContent = 'Editar';
              editButton.id="btn-open-modal"
-             editButton.className = 'btn btn-primary btn-sm';
-             editButton.setAttribute('data-uid',data[uid]);
              editButton.onclick = function() {
                  openEditModal(uid, data[uid]); // Abre el modal de edición
              };
@@ -124,6 +128,10 @@ function loadData() {
         document.getElementById('password1').value=recordData.Password;
         document.getElementById('carrera1').value=recordData.Carrera;
         document.getElementById('cuatri1').value=recordData.Cuatri;
+        document.getElementById('uid1').value=recordData.uid;
+        const uidInput = document.getElementById('uid1'); // Asegúrate de tener un campo oculto en el modal
+        uidInput.value = recordId;
+
         $('#editModal').data('recordId', recordId); // Guardar el ID en el modal
         $('#editModal').modal('show'); // Mostrar el modal de edición
     }
@@ -146,7 +154,7 @@ function loadData() {
     const modificar=document.getElementById('saveButton');
     modificar.addEventListener('click', function(event){
         event.preventDefault();
-        const uid = document.getElementById('btn-open-modal').getAttribute('data-uid');
+        const uid1 = document.getElementById('uid1').value;
         const Correo1 = document.getElementById('correo1').value;
         const password1 = document.getElementById('password1').value;
         const Nombre1 = document.getElementById('nombre1').value;
@@ -155,9 +163,7 @@ function loadData() {
         const Matricula1 = document.getElementById('matricula1').value;
         const Apellidos1 = document.getElementById('apellido1').value;
        
-       
-       
-       /* update(ref(database, '/Cuentas/' + uid), {
+      update(ref(database, '/Cuentas/' + uid1), {
             Apellidos: Apellidos1,
             Carrera: Carrera1,
             Nombre: Nombre1,
@@ -175,8 +181,31 @@ function loadData() {
             const errorCode = error.code;
             const errorMessage = error.message;
             alert("ERROR: Ha ocurrido un problema al actualizar los datos: " + error.message);
-        }); */
-        alert(uid);
+        });
+        
+       
     
     
     })
+    // Suponiendo que tienes el UID del documento que deseas eliminar
+    const eliminarButton = document.getElementById('eliminarButton');
+    eliminarButton.addEventListener('click', function(event) {
+    event.preventDefault();
+    
+    const uidToDelete = document.getElementById('uidToDelete').value; // Obtener el UID del documento a eliminar
+
+    // Referencia al documento que deseas eliminar
+    const docRef = doc(database, 'Cuentas', uidToDelete);
+
+    // Eliminar el documento
+    deleteDoc(docRef)
+        .then(() => {
+            alert("Documento eliminado exitosamente.");
+            location.reload(); // Recargar la página o actualizar la vista
+        })
+        .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            alert("ERROR: Ha ocurrido un problema al eliminar el documento: " + error.message);
+        });
+});
