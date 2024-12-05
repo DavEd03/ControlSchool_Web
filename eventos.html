@@ -3,57 +3,351 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eventos</title>
+    <title>Agregar Alumno</title>
     <link rel="stylesheet" href="css/style1.css">
     <link rel="icon" type="image/jpg" href="images/Logov2_rmb.png"/>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    
+
 </head>
 <body style="background-color: #3B4445;">
     <div class="contenedor">
         <aside>
             <nav>
-                <span class="logo_menu"><img src="images/Logov2_rmb.png" ></span></li>
-                <ul>
-                    <li><a href="menu.html"><img src="images/home.png">Inicio</a></li>
-                    <li><a href="materias.html"><img src="images/book.png" alt="">Materias</a></li>
-                    <li><a href="calificaciones.html"><img src="images/folder.png">Boletas</a></li>
-                    <li><a href="expediente.html"><img src="images/attach.png">Expedientes</a></li>
-                    <li><a href="eventos.html"><img src="images/calendar.png">Eventos</a></li>
-                    <li><a href="agregar_alumno.html"><img src="images/add_user.png" >Agregar Usuario</a></li>
-                </ul>
-        </nav>
+                    <span class="logo_menu"><img src="images/Logov2_rmb.png" ></span>
+                    <ul>
+                      <li><a href="menu.html"><img src="images/home.png">Inicio</a></li>
+                      <li><a href="materias.html"><img src="images/book.png" alt="">Materias</a></li>
+                      <li><a href="calificaciones.html"><img src="images/folder.png">Boletas</a></li>
+                      <li><a href="expediente.html"><img src="images/attach.png">Expedientes</a></li>
+                      <li><a href="eventos.html"><img src="images/calendar.png">Eventos</a></li>
+                      <li><a href="agregar_alumno.html"><img src="images/add_user.png" >Agregar Usuario</a></li>
+                  </ul>
+            </nav>
         </aside>
            
         <div class="tabla-contenedor">
-            <span class="banner">
-                <p style="margin: 10px;"> Mostrar por:</p> <br>
-                <p>
-                   Fecha <select id="mostrar">
+    </span>
+    <span class="tabla1">
+      <h2>Agregar Evento</h2>
+    <table id="table-body" border="1" cellspacing="1">
+        <thead>
+            <tr>
+        <th>Id</th>
+        <th>Titulo</th>
+        <th>Descripción</th>
+        <th>Fecha</th>
+        <th>Acciones</th>
+     </tr>
+        </thead>
+     
+     <tbody  id="tablebody">
 
-                </select>
-                </p>
-                <p>
-                    
-                    Fecha<select id="mostrar2">
-                        
-                    </select>
-                </p>
-            </span>
-            <div class="tabla1">
-                <span class="tabla2">
-                    <table  id="table-body" border="1"><h2>Eventos</h2>
-                     <tr class="celda">
-                        <th>Id</th>
-                        <th>Evento</th>
-                        <th>Fecha</th>
-                        <th>Descripcion</th>
-                        <th>Editar</th>
-                     </tr> 
-                    </table>
-                    </span>
-            </div>
+     </tbody>
+    </table>
+    <p id="datos"></p>
+    </span>
+    <button type="button" class="btn-add" data-toggle="modal" data-target="#myModal"> 
+        Agregar Evento
+    </button>
+        </div>
     </div>
+
+
+   <!--Modal--> 
+   <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"> <div class="modal-dialog" role="document"> 
+    <div class="modal-content"> <div class="modal-header"> 
+        <h5 class="modal-title" id="exampleModalLabel">Agregar Evento</h5> 
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"> 
+            <span aria-hidden="true">&times;</span> </button> </div> 
+            <div class="modal-body"> 
+               <form id="register-form">
+                <table>
+                    <tr>
+                        <td colspan="2">
+                            <label>ID:</label>
+                            <input type="text" name="id" id="id">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label>Titulo:</label></td>
+                        <td><input type="text" name="titulo" id="titulo"></td>
+                    </tr>
+                    <tr>
+                        <td><label>Descripción:</label></td>
+                        <td><input type="text" name="descripcion" id="descripcion"></td>
+                    </tr>
+                    <tr>
+                        <td><label>Fecha:</label></td></td>
+                        <td><input type="mail" name="fecha" id="fecha"></td>
+                    </tr>
+                </table>
+              </form>
+                 </div> 
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" id="btn-close">Cerrar</button> 
+                    <button type="submit" class="btn-add1" id="btn-success">Agregar Evento</button> 
+                </div> 
+            </div> 
+        </div> 
+    </div> 
+</div>
+
+
+<!-- Modal para Editar -->
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="editModalLabel">Editar Evento</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form id="edit-form">
+            <table>
+                <tr>
+                    <td colspan="2">
+                        <label>ID:</label>
+                        <input type="text" name="id" id="id1" readonly>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label>Titulo:</label></td>
+                    <td><input type="text" name="titulo" id="titulo1"></td>
+                </tr>
+                <tr>
+                    <td><label>Descripción:</label></td>
+                    <td><input type="text" name="descripcion" id="descripcion1"></td>
+                </tr>
+                <tr>
+                    <td><label>Fecha:</label></td></td>
+                    <td><input type="mail" name="fecha" id="fecha1"></td>
+                </tr>
+            </table>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" id="saveButton" class="btn btn-primary">Guardar Cambios</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!-- Modal para Eliminar -->
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="deleteModalLabel">Eliminar Registro</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>¿Estás seguro de que deseas eliminar este registro?</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" id="confirmDeleteButton" class="btn btn-danger">Eliminar</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+<script type="module" defer>
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js";
+import { getDatabase, ref, onValue, set, update, remove } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-database.js";
+
+
+const firebaseConfig = {
+    apiKey: "AIzaSyBIb5nB7I0E5BM2ZaKYQHv0aSWCC2FMBGE",
+    authDomain: "controlschool-9fdc0.firebaseapp.com",
+    projectId: "controlschool-9fdc0",
+    storageBucket: "controlschool-9fdc0.appspot.com",
+    messagingSenderId: "999306012944",
+    appId: "1:999306012944:web:be011a6be63004f53b9d95",
+    measurementId: "G-T1CCLT7RKX"
+};
+
+// Inicializa Firebase
+const app = initializeApp(firebaseConfig);
+const database = getDatabase(app);
+
+
+        // Función para cargar datos
+        function loadData() {
+            const dbRef = ref(database, "Eventos/");
+            onValue(dbRef, (snapshot) => {
+                const data = snapshot.val();
+                mostrarDatos(data);
+            });
+        }
+
+       // Función para mostrar datos en la tabla
+function mostrarDatos(data) {
+    const contenedor = document.getElementById('tablebody');
+    contenedor.innerHTML = ''; // Limpiar el contenedor antes de mostrar nuevos datos
+
+    if (data) { // Verificar que haya datos
+        for (const key in data) {
+            const item = data[key];
+            const row = document.createElement('tr');
+
+            // Crear celdas para los datos
+            row.innerHTML = `
+                <td>${key}</td> <!-- Usar la clave del nodo como ID -->
+                <td>${item.Titulo || 'Sin Título'}</td>
+                <td>${item.Descripcion || 'Sin Descripción'}</td>
+                <td>${item.Fecha || 'Sin Fecha'}</td>
+                <td></td> <!-- Columna para los botones -->
+            `;
+
+            // Crear botones para editar y eliminar
+            const cellActions = row.querySelector('td:last-child'); // Seleccionar la última celda para añadir los botones
+
+            const editButton = document.createElement('button');
+            editButton.textContent = 'Editar';
+            editButton.onclick = function() {
+                openEditModal(key, item); // Abre el modal de edición
+            };
+
+            const deleteButton = document.createElement('button');
+            deleteButton.textContent = 'Eliminar';
+            deleteButton.className = 'btn btn-danger btn-sm';
+            deleteButton.onclick = function() {
+                openDeleteModal(key); // Abre el modal de eliminación
+            };
+
+            // Añadir los botones a la celda de acciones
+            cellActions.appendChild(editButton);
+            cellActions.appendChild(deleteButton);
+            contenedor.appendChild(row);
+        }
+    } else {
+        // Si no hay datos, mostrar un mensaje
+        contenedor.innerHTML = '<tr><td colspan="5">No hay eventos disponibles</td></tr>';
+    }
+}
+// Ejecutar la función loadData al cargar la página
+document.addEventListener('DOMContentLoaded', (event) => {
+        loadData();
+    });
+// Función para guardar los cambios
+document.getElementById('btn-success').addEventListener('click', function() {
+    const newId = document.getElementById('id').value;
+    const newTitulo = document.getElementById('titulo').value;
+    const newDescripcion = document.getElementById('descripcion').value;
+    const newFecha = document.getElementById('fecha').value;
+
+     // Validación de entrada
+     if (!newId || !newTitulo || !newDescripcion || !newFecha) {
+        alert("Por favor, completa todos los campos.");
+        return;
+    }
+
+    // Actualiza el valor en Firebase
+    set(ref(database, '/Eventos/' + newId), {
+        Titulo: newTitulo,
+        Descripcion: newDescripcion,
+        Fecha: newFecha,
+    }).then(() => {
+        alert("Registro actualizado exitosamente.");
+        //document.getElementById('myModal').style.display = 'none';
+        // Aquí puedes agregar código para actualizar la interfaz si es necesario
+        document.getElementById('id').value = "";
+        document.getElementById('titulo').value = "";
+        document.getElementById('descripcion').value = "";
+        document.getElementById('fecha').value = "";
+    }).catch((error) => {
+        console.error('Error al actualizar el registro: ', error);
+    });
+});
+
+
+    function openEditModal(recordId, recordData) {
+        // Establecer los valores actuales en el modal de edición
+        document.getElementById('id1').value = recordData.Id;
+        document.getElementById('titulo1').value=recordData.Titulo;
+        document.getElementById('descripcion1').value=recordData.Descripcion; 
+        document.getElementById('fecha1').value=recordData.Fecha;
+        const uidInput = document.getElementById('id1'); // Asegúrate de tener un campo oculto en el modal
+        uidInput.value = recordId;
+
+        $('#editModal').data('recordId', recordId); // Guardar el ID en el modal
+        $('#editModal').modal('show'); // Mostrar el modal de edición
+    }
+    
+    
+    function limpiar(){
+        document.getElementById('id').value = "";
+        document.getElementById('titulo').value = "";
+        document.getElementById('descripcion').value = "";
+        document.getElementById('fecha').value = "";
+    }
+    
+    //modificar datos en la base de datos
+    const modificar=document.getElementById('saveButton');
+    modificar.addEventListener('click', function(event){
+        event.preventDefault();
+        const id1 = document.getElementById('id1').value;
+        const Titulo1 = document.getElementById('titulo1').value;
+        const Descripcion1 = document.getElementById('descripcion1').value;
+        const Fecha1 = document.getElementById('fecha1').value;
+       
+      update(ref(database, '/Eventos/' + id1), {
+           Titulo: Titulo1,
+            Descripcion: Descripcion1,
+            Fecha: Fecha1,
+        })
+        .then(() => {
+            alert("Datos actualizados exitosamente.");
+            location.reload();
+            
+        })
+        .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            alert("ERROR: Ha ocurrido un problema al actualizar los datos: " + error.message);
+        });
+    })
+    // Agregar el listener para el botón
+    function openDeleteModal(recordId) {
+        $('#deleteModal').data('recordId', recordId); // Guardar el ID en el modal
+        $('#deleteModal').modal('show'); // Mostrar el modal de eliminación
+    
+            const eliminarButton = document.getElementById('confirmDeleteButton');
+            eliminarButton.addEventListener('click', function(event) {
+                event.preventDefault();
+                // Referencia a la ruta del nodo que deseas eliminar
+                const refToDelete = ref(database, 'Eventos/' + recordId);
+
+                // Eliminar el nodo
+                remove(refToDelete)
+                    .then(() => {
+                        alert("Documento eliminado exitosamente.");
+                        // Aquí podrías actualizar la interfaz para reflejar la eliminación sin recargar la página
+                        document.getElementById('deleteModal').style.display = 'none';
+                        location.reload();
+                    })
+                    .catch((error) => {
+                        console.error('Error al eliminar el documento: ', error);
+                        alert("ERROR: Ha ocurrido un problema al eliminar el documento: " + error.message);
+                    });
+            });
+        }
+
+
+</script>
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script> 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script> 
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </body>
 </html>

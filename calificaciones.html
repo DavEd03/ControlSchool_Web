@@ -30,44 +30,796 @@
     <div class="contenedor">
         <aside>
             <nav>
-                <span class="logo_menu"><img src="images/Logov2_rmb.png" ></span></li>
-                <ul>
-                    <li><a href="menu.html"><img src="images/home.png">Inicio</a></li>
-                    <li><a href="materias.html"><img src="images/book.png" alt="">Materias</a></li>
-                    <li><a href="calificaciones.html"><img src="images/folder.png">Boletas</a></li>
-                    <li><a href="expediente.html"><img src="images/attach.png">Expedientes</a></li>
-                    <li><a href="eventos.html"><img src="images/calendar.png">Eventos</a></li>
-                    <li><a href="agregar_alumno.html"><img src="images/add_user.png" >Agregar Usuario</a></li>
-                </ul>
-        </nav>
+                    <span class="logo_menu"><img src="images/Logov2_rmb.png" ></span>
+                    <ul>
+                        <li><a href="menu.html"><img src="images/home.png">Inicio</a></li>
+                        <li><a href="materias.html"><img src="images/book.png" alt="">Materias</a></li>
+                        <li><a href="calificaciones.html"><img src="images/folder.png">Boletas</a></li>
+                        <li><a href="expediente.html"><img src="images/attach.png">Expedientes</a></li>
+                        <li><a href="eventos.html"><img src="images/calendar.png">Eventos</a></li>
+                        <li><a href="agregar_alumno.html"><img src="images/add_user.png" >Agregar Usuario</a></li>
+                    </ul>
+            </nav>
         </aside>
            
         <div class="tabla-contenedor">
-            <span class="banner">
-                Mostrar por: 
-                <p>
-                   Carrera <select id="mostrar">
-
-                </select>
-                </p>
-                <p>
-                    
-                    Cuatrimestre<select id="mostrar2">
-                        
-                    </select>
-                </p>
-            </span>
+            
             <span class="tabla1">
-              <h2>Calificaciones</h2>
-            <table id="table-body" border="1">
-                      <th>Matricula</th>  
-                        <th>Nombre y apellidos </th> 
-                        <th>Cuatrimestre</th>
-                        <th>Carrera</th> 
-                        <th>Unidad1 </th>
-                    <th>Unidad2</th>
-                <th>Unidad3</th> </tr>
+                <h2>10° IDGS Unidad 1</h2>
+              <table id="table-body" border="1" cellspacing="1">
+                  <thead>
+                      <tr>
+                        <th>Matricula</th>
+                        <th>Desarrollo Integral</th>
+                        <th>Gestion Proceso</th>
+                        <th>Ingles</th>
+                        <th>Integradora</th>
+                        <th>Negociacion</th>
+                        <th>Optativa</th>
+                        <th>Web Progresiva</th>
+                        <th>Acciones</th>
+                    </tr>
+                  </thead>
+               <tbody  id="tablaCuerpo">
+               </tbody>
+              </table>
+              <p id="datos"></p>
+
+              </span>
+            <span class="tabla1">
+                <h2>10° IDGS Unidad 2</h2>
+              <table id="table-body" border="1" cellspacing="1">
+                  <thead>
+                      <tr>
+                        <th>Matricula</th>
+                        <th>Desarrollo Integral</th>
+                        <th>Gestion Proceso</th>
+                        <th>Ingles</th>
+                        <th>Integradora</th>
+                        <th>Negociacion</th>
+                        <th>Optativa</th>
+                        <th>Web Progresiva</th>
+                        <th>Acciones</th>
+                    </tr>
+                  </thead>
+               <tbody  id="tablaCuerpo2">
+               </tbody>
+              </table>
+              <p id="datos"></p>
+
+              </span>
+            <span class="tabla1">
+                <h2>10° IDGS Unidad 3</h2>
+              <table id="table-body" border="1" cellspacing="1">
+                  <thead>
+                      <tr>
+                        <th>Matricula</th>
+                        <th>Desarrollo Integral</th>
+                        <th>Gestion Proceso</th>
+                        <th>Ingles</th>
+                        <th>Integradora</th>
+                        <th>Negociacion</th>
+                        <th>Optativa</th>
+                        <th>Web Progresiva</th>
+                        <th>Acciones</th>
+                    </tr>
+                  </thead>
+               <tbody  id="tablaCuerpo3">
+               </tbody>
+              </table>
+              <p id="datos"></p>
+
+              </span>
+              <button type="button" class="btn-add" data-toggle="modal" data-target="#myModal"> 
+              Agregar Calificación
+            </button>
+            </div>          
+    </div>
+    <!--Modal--> 
+   <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"> <div class="modal-dialog" role="document"> 
+    <div class="modal-content"> <div class="modal-header"> 
+        <h5 class="modal-title" id="exampleModalLabel">Agregar Evento</h5> 
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"> 
+            <span aria-hidden="true">&times;</span> </button> </div> 
+            <div class="modal-body"> 
+               <form id="register-form">
+                <table>
+                    <tr>
+                        <td><label for="studentId">Matricula:</label></td>
+                        <td><input type="text" id="studentId" required></td>
+                    </tr>
+                    <tr>
+                        <td>><label for="unit">Unidad:</label>
+                        <select id="unidad" required>
+                            <option value="U1">Unidad 1</option>
+                            <option value="U2">Unidad 2</option>
+                            <option value="U3">Unidad 3</option>
+                        </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label for="desarrolloIntegral">Desarrollo Integral:</label></td>
+                        <td><input type="number" id="desarrolloIntegral" min="0" max="10" required></td>
+                    </tr>
+                    <tr>
+                        <td><label for="gestionProceso">Gestión Proceso:</label></td>
+                        <td><input type="number" id="gestionProceso" min="0" max="10" required></td>
+                    </tr>
+                    <tr>
+                        <td><label for="ingles">Inglés:</label></td>
+                        <td><input type="number" id="ingles" min="0" max="10" required></td>
+                    </tr>
+                    <tr>
+                        <td><label for="integradora">Integradora:</label></td>
+                        <td><input type="number" id="integradora" min="0" max="10" required></td>
+                    </tr>
+                    <tr>
+                        <td><label for="negociacion">Negociación:</label></td>
+                        <td><input type="number" id="negociacion" min="0" max="10" required></td>
+                    </tr>
+                    <tr>
+                        <td><label for="optativa">Optativa:</label></td>
+                        <td><input type="number" id="optativa" min="0" max="10" required></td>
+                    </tr>
+                    <tr>
+                        <td><label for="webProgresiva">Web Progresiva:</label></td>
+                        <td><input type="number" id="webProgresiva" min="0" max="10" required></td>
+                    </tr>
                 </table>
-                </thead>
+              </form>
+                 </div> 
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" id="btn-close">Cerrar</button> 
+                    <button type="submit" class="btn-add1" id="btn-success">Agregar Evento</button> 
+                </div> 
+            </div> 
+        </div> 
+    </div> 
+</div>
+
+<!-- Modal para Editar -->
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="editModalLabel">Editar Evento</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form id="edit-form">
+            <table>
+                <tr>
+                    
+                        <td><label>Matricula:</label>
+                        <td><input type="text" name="id" id="studentId1" readonly></td>
+                    
+                </tr>
+                <tr>
+                    <td><label>Unidad:</label></td>
+                    <td><input type="text" name="titulo" id="unidad1" readonly></td>
+                </tr>
+                <tr>
+                    <td><label for="desarrolloIntegral">Desarrollo Integral:</label></td>
+                    <td><input type="number" id="desarrolloIntegral1" min="0" max="10" required></td>
+                </tr>
+                <tr>
+                    <td><label for="gestionProceso">Gestión Proceso:</label></td>
+                    <td><input type="number" id="gestionProceso1" min="0" max="10" required></td>
+                </tr>
+                <tr>
+                    <td><label for="ingles">Inglés:</label></td>
+                    <td><input type="number" id="ingles1" min="0" max="10" required></td>
+                </tr>
+                <tr>
+                    <td><label for="integradora">Integradora:</label></td>
+                    <td><input type="number" id="integradora1" min="0" max="10" required></td>
+                </tr>
+                <tr>
+                    <td><label for="negociacion">Negociación:</label></td>
+                    <td><input type="number" id="negociacion1" min="0" max="10" required></td>
+                </tr>
+                <tr>
+                    <td><label for="optativa">Optativa:</label></td>
+                    <td><input type="number" id="optativa1" min="0" max="10" required></td>
+                </tr>
+                <tr>
+                    <td><label for="webProgresiva">Web Progresiva:</label></td>
+                    <td><input type="number" id="webProgresiva1" min="0" max="10" required></td>
+                </tr>
+            </table>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" id="saveButton" class="btn btn-primary">Guardar Cambios</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal para Editar -->
+<div class="modal fade" id="editModal2" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="editModalLabel">Editar Evento</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form id="edit-form">
+            <table>
+                <tr>
+                    
+                        <td><label>Matricula:</label>
+                        <td><input type="text" name="id" id="studentId1" readonly></td>
+                    
+                </tr>
+                <tr>
+                    <td><label>Unidad:</label></td>
+                    <td><input type="text" name="titulo" id="unidad1" readonly></td>
+                </tr>
+                <tr>
+                    <td><label for="desarrolloIntegral">Desarrollo Integral:</label></td>
+                    <td><input type="number" id="desarrolloIntegral1" min="0" max="10" required></td>
+                </tr>
+                <tr>
+                    <td><label for="gestionProceso">Gestión Proceso:</label></td>
+                    <td><input type="number" id="gestionProceso1" min="0" max="10" required></td>
+                </tr>
+                <tr>
+                    <td><label for="ingles">Inglés:</label></td>
+                    <td><input type="number" id="ingles1" min="0" max="10" required></td>
+                </tr>
+                <tr>
+                    <td><label for="integradora">Integradora:</label></td>
+                    <td><input type="number" id="integradora1" min="0" max="10" required></td>
+                </tr>
+                <tr>
+                    <td><label for="negociacion">Negociación:</label></td>
+                    <td><input type="number" id="negociacion1" min="0" max="10" required></td>
+                </tr>
+                <tr>
+                    <td><label for="optativa">Optativa:</label></td>
+                    <td><input type="number" id="optativa1" min="0" max="10" required></td>
+                </tr>
+                <tr>
+                    <td><label for="webProgresiva">Web Progresiva:</label></td>
+                    <td><input type="number" id="webProgresiva1" min="0" max="10" required></td>
+                </tr>
+            </table>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" id="saveButton2" class="btn btn-primary">Guardar Cambios</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Modal para Editar -->
+<div class="modal fade" id="editModal3" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="editModalLabel">Editar Evento</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form id="edit-form">
+            <table>
+                <tr>
+                    
+                        <td><label>Matricula:</label>
+                        <td><input type="text" name="id" id="studentId1" readonly></td>
+                    
+                </tr>
+                <tr>
+                    <td><label>Unidad:</label></td>
+                    <td><input type="text" name="titulo" id="unidad1" readonly></td>
+                </tr>
+                <tr>
+                    <td><label for="desarrolloIntegral">Desarrollo Integral:</label></td>
+                    <td><input type="number" id="desarrolloIntegral1" min="0" max="10" required></td>
+                </tr>
+                <tr>
+                    <td><label for="gestionProceso">Gestión Proceso:</label></td>
+                    <td><input type="number" id="gestionProceso1" min="0" max="10" required></td>
+                </tr>
+                <tr>
+                    <td><label for="ingles">Inglés:</label></td>
+                    <td><input type="number" id="ingles1" min="0" max="10" required></td>
+                </tr>
+                <tr>
+                    <td><label for="integradora">Integradora:</label></td>
+                    <td><input type="number" id="integradora1" min="0" max="10" required></td>
+                </tr>
+                <tr>
+                    <td><label for="negociacion">Negociación:</label></td>
+                    <td><input type="number" id="negociacion1" min="0" max="10" required></td>
+                </tr>
+                <tr>
+                    <td><label for="optativa">Optativa:</label></td>
+                    <td><input type="number" id="optativa1" min="0" max="10" required></td>
+                </tr>
+                <tr>
+                    <td><label for="webProgresiva">Web Progresiva:</label></td>
+                    <td><input type="number" id="webProgresiva1" min="0" max="10" required></td>
+                </tr>
+            </table>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" id="saveButton2" class="btn btn-primary">Guardar Cambios</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Modal para Eliminar -->
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="deleteModalLabel">Eliminar Registro</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>¿Estás seguro de que deseas eliminar este registro?</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" id="confirmDeleteButton" class="btn btn-danger">Eliminar</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+    <script type="module">
+
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js";
+        import { getDatabase, ref, onValue, set, update, remove, get } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-database.js";
+
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyBIb5nB7I0E5BM2ZaKYQHv0aSWCC2FMBGE",
+            authDomain: "controlschool-9fdc0.firebaseapp.com",
+            projectId: "controlschool-9fdc0",
+            storageBucket: "controlschool-9fdc0.appspot.com",
+            messagingSenderId: "999306012944",
+            appId: "1:999306012944:web:be011a6be63004f53b9d95",
+            measurementId: "G-T1CCLT7RKX"
+        };
+
+// Inicializa Firebase
+const app = initializeApp(firebaseConfig);
+const database = getDatabase(app);
+
+const dbRef = ref(database, '/Alumnos/DGS/10/Calificaciones/');
+
+onValue(dbRef, (snapshot) => {
+    const data = snapshot.val();
+    const tbody = document.getElementById('tablaCuerpo');
+    
+    tbody.innerHTML = ''; // Limpiar la tabla antes de agregar nuevos datos
+
+    // Verificar si hay datos
+    if (data) {
+        for (let studentId in data) {
+            const studentData = data[studentId]; // Obtener los datos del alumno actual
+            const calificaciones = studentData.U1; // Acceder a las calificaciones de U1
+
+            // Verificar si hay calificaciones
+            if (calificaciones) {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${studentId}</td>
+                    <td>${calificaciones.Desarrollo_Integral || 'N/A'}</td>
+                    <td>${calificaciones.Gestion_Proceso || 'N/A'}</td>
+                    <td>${calificaciones.Ingles || 'N/A'}</td>
+                    <td>${calificaciones.Integradora || 'N/A'}</td>
+                    <td>${calificaciones.Negociacion || 'N/A'}</td>
+                    <td>${calificaciones.Optativa || 'N/A'}</td>
+                    <td>${calificaciones.Web_Progresiva || 'N/A'}</td>
+                    <td></td>
+                `;
+                // Crear botones para editar y eliminar
+            const cellActions = row.querySelector('td:last-child'); // Seleccionar la última celda para añadir los botones
+
+            const editButton = document.createElement('button');
+            editButton.textContent = 'Editar';
+            editButton.onclick = function() {
+                openEditModal(studentId, calificaciones); // Abre el modal de edición
+            };
+
+            const deleteButton = document.createElement('button');
+            deleteButton.textContent = 'Eliminar';
+            deleteButton.className = 'btn btn-danger btn-sm';
+            deleteButton.onclick = function() {
+                openDeleteModal(studentId); // Abre el modal de eliminación
+            };
+
+            // Añadir los botones a la celda de acciones
+            cellActions.appendChild(editButton);
+            cellActions.appendChild(deleteButton);
+                tbody.appendChild(row);
+            } else {
+                console.log(`No hay calificaciones para el estudiante ${studentId}`);
+            }
+        }
+    } else {
+        console.log('No hay datos disponibles');
+    }
+});
+const dbRef2 = ref(database, '/Alumnos/DGS/10/Calificaciones/');
+
+onValue(dbRef, (snapshot) => {
+    const data = snapshot.val();
+    const tbody = document.getElementById('tablaCuerpo2');
+    
+    tbody.innerHTML = ''; // Limpiar la tabla antes de agregar nuevos datos
+
+    // Verificar si hay datos
+    if (data) {
+        for (let studentId in data) {
+            const studentData = data[studentId]; // Obtener los datos del alumno actual
+            const calificaciones = studentData.U2; // Acceder a las calificaciones de U1
+
+            // Verificar si hay calificaciones
+            if (calificaciones) {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${studentId}</td>
+                    <td>${calificaciones.Desarrollo_Integral || 'N/A'}</td>
+                    <td>${calificaciones.Gestion_Proceso || 'N/A'}</td>
+                    <td>${calificaciones.Ingles || 'N/A'}</td>
+                    <td>${calificaciones.Integradora || 'N/A'}</td>
+                    <td>${calificaciones.Negociacion || 'N/A'}</td>
+                    <td>${calificaciones.Optativa || 'N/A'}</td>
+                    <td>${calificaciones.Web_Progresiva || 'N/A'}</td>
+                    <td></td>
+                `;
+                // Crear botones para editar y eliminar
+            const cellActions = row.querySelector('td:last-child'); // Seleccionar la última celda para añadir los botones
+
+            const editButton2 = document.createElement('button');
+            editButton2.textContent = 'Editar';
+            editButton2.onclick = function() {
+                openEditModal2(studentId, calificaciones); // Abre el modal de edición
+            };
+
+            const deleteButton = document.createElement('button');
+            deleteButton.textContent = 'Eliminar';
+            deleteButton.className = 'btn btn-danger btn-sm';
+            deleteButton.onclick = function() {
+                openDeleteModal(studentId); // Abre el modal de eliminación
+            };
+
+            // Añadir los botones a la celda de acciones
+            cellActions.appendChild(editButton2);
+            cellActions.appendChild(deleteButton);
+                tbody.appendChild(row);
+            } else {
+                console.log(`No hay calificaciones para el estudiante ${studentId}`);
+            }
+        }
+    } else {
+        console.log('No hay datos disponibles');
+    }
+});
+
+const dbRef3 = ref(database, '/Alumnos/DGS/10/Calificaciones/');
+
+onValue(dbRef, (snapshot) => {
+    const data = snapshot.val();
+    const tbody = document.getElementById('tablaCuerpo3');
+    
+    tbody.innerHTML = ''; // Limpiar la tabla antes de agregar nuevos datos
+
+    // Verificar si hay datos
+    if (data) {
+        for (let studentId in data) {
+            const studentData = data[studentId]; // Obtener los datos del alumno actual
+            const calificaciones = studentData.U3; // Acceder a las calificaciones de U1
+
+            // Verificar si hay calificaciones
+            if (calificaciones) {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${studentId}</td>
+                    <td>${calificaciones.Desarrollo_Integral || 'N/A'}</td>
+                    <td>${calificaciones.Gestion_Proceso || 'N/A'}</td>
+                    <td>${calificaciones.Ingles || 'N/A'}</td>
+                    <td>${calificaciones.Integradora || 'N/A'}</td>
+                    <td>${calificaciones.Negociacion || 'N/A'}</td>
+                    <td>${calificaciones.Optativa || 'N/A'}</td>
+                    <td>${calificaciones.Web_Progresiva || 'N/A'}</td>
+                    <td></td>
+                `;
+                // Crear botones para editar y eliminar
+            const cellActions = row.querySelector('td:last-child'); // Seleccionar la última celda para añadir los botones
+
+            const editButton3 = document.createElement('button');
+            editButton3.textContent = 'Editar';
+            editButton3.onclick = function() {
+                openEditModal3(studentId, calificaciones); // Abre el modal de edición
+            };
+
+            const deleteButton = document.createElement('button');
+            deleteButton.textContent = 'Eliminar';
+            deleteButton.className = 'btn btn-danger btn-sm';
+            deleteButton.onclick = function() {
+                openDeleteModal(studentId); // Abre el modal de eliminación
+            };
+
+            // Añadir los botones a la celda de acciones
+            cellActions.appendChild(editButton3);
+            cellActions.appendChild(deleteButton);
+                tbody.appendChild(row);
+            } else {
+                console.log(`No hay calificaciones para el estudiante ${studentId}`);
+            }
+        }
+    } else {
+        console.log('No hay datos disponibles');
+    }
+});
+
+
+
+
+document.getElementById('btn-success').addEventListener('click', function(event) {
+    event.preventDefault(); // Evitar el envío del formulario
+
+    const studentId = document.getElementById('studentId').value;
+    const unidad = document.getElementById('unidad').value; // Obtener la unidad seleccionada
+    const desarrolloIntegral = document.getElementById('desarrolloIntegral').value;
+    const gestionProceso = document.getElementById('gestionProceso').value;
+    const ingles = document.getElementById('ingles').value;
+    const integradora = document.getElementById('integradora').value;
+    const negociacion = document.getElementById('negociacion').value;
+    const optativa = document.getElementById('optativa').value;
+    const webProgresiva = document.getElementById('webProgresiva').value;
+
+    // Crear un objeto con las calificaciones
+    const calificaciones = {
+        Desarrollo_Integral: desarrolloIntegral,
+        Gestion_Proceso: gestionProceso,
+        Ingles: ingles,
+        Integradora: integradora,
+        Negociacion: negociacion,
+        Optativa: optativa,
+        Web_Progresiva: webProgresiva
+    };
+
+    // Referencia a la base de datos para verificar si el alumno y la unidad existen
+    const alumnoRef = ref(database, `/Alumnos/DGS/10/Calificaciones/${studentId}/${unidad}`);
+
+    // Verificar si el alumno y la unidad existen
+    get(alumnoRef).then((snapshot) => {
+        if (snapshot.exists()) {
+            // El alumno y la unidad existen
+            alert('El alumno ya existe en esta unidad. No se pueden guardar las calificaciones.');
+            location.reload();
+        } else {
+            // El alumno o la unidad no existen, proceder a guardar las calificaciones
+            const calificacionesRef = ref(database, `/Alumnos/DGS/10/Calificaciones/${studentId}/${unidad}`);
+            set(calificacionesRef, calificaciones)
+                .then(() => {
+                    alert('Calificaciones guardadas correctamente');
+                    location.reload(); // Limpiar el formulario
+                })
+                .catch((error) => {
+                    alert('Error al guardar las calificaciones:', error);
+                });
+        }
+    }).catch((error) => {
+        alert('Error al verificar el alumno:', error);
+    });
+});
+//1
+function openEditModal(recordId, recordData, studentData) {
+    // Establecer los valores actuales en el modal de edición
+    document.getElementById('studentId1').value = recordId;
+    document.getElementById('unidad1').value = "U1"; 
+    document.getElementById('desarrolloIntegral1').value = recordData.Desarrollo_Integral;
+    document.getElementById('gestionProceso1').value = recordData.Gestion_Proceso;
+    document.getElementById('ingles1').value = recordData.Ingles;
+    document.getElementById('integradora1').value = recordData.Integradora;
+    document.getElementById('negociacion1').value = recordData.Negociacion;
+    document.getElementById('optativa1').value = recordData.Optativa;
+    document.getElementById('webProgresiva1').value = recordData.Web_Progresiva;
+
+    $('#editModal').data('recordId', recordId); // Guardar el ID en el modal
+    
+    $('#editModal').modal('show'); // Mostrar el modal de edición
+}
+
+function limpiar() {
+    document.getElementById('studentId1').value = "";
+    document.getElementById('unidad1').value = ""; 
+    document.getElementById('desarrolloIntegral1').value = "";
+    document.getElementById('gestionProceso1').value = "";
+    document.getElementById('ingles1').value = "";
+    document.getElementById('integradora1').value = "";
+    document.getElementById('negociacion1').value = "";
+    document.getElementById('optativa1').value = "";
+    document.getElementById('webProgresiva1').value = "";
+}
+
+// Modificar datos en la base de datos
+const modificar = document.getElementById('saveButton');
+modificar.addEventListener('click', function(event) {
+    event.preventDefault();
+    
+    const studentId = document.getElementById('studentId1').value;
+    const unidad = document.getElementById('unidad1').value; // Obtener la unidad seleccionada
+    const desarrolloIntegral = document.getElementById('desarrolloIntegral1').value;
+    const gestionProceso = document.getElementById('gestionProceso1').value;
+    const ingles = document.getElementById('ingles1').value;
+    const integradora = document.getElementById('integradora1').value;
+    const negociacion = document.getElementById('negociacion1').value;
+    const optativa = document.getElementById('optativa1').value;
+    const webProgresiva = document.getElementById('webProgresiva1').value;
+
+    // Actualizar datos en la base de datos
+    update(ref(database, `/Alumnos/DGS/10/Calificaciones/${studentId}/U1`), {
+        Desarrollo_Integral: desarrolloIntegral,
+        Gestion_Proceso: gestionProceso,
+        Ingles: ingles,
+        Integradora: integradora,
+        Negociacion: negociacion,
+        Optativa: optativa,
+        Web_Progresiva: webProgresiva
+    })
+    .then(() => {
+    })
+    .catch((error) => {
+        alert("ERROR: Ha ocurrido un problema al actualizar los datos: " + error.message);
+    });
+});
+
+//2
+function openEditModal2(recordId, recordData, studentData) {
+    // Establecer los valores actuales en el modal de edición
+    document.getElementById('studentId1').value = recordId;
+    document.getElementById('unidad1').value = "U2"; 
+    document.getElementById('desarrolloIntegral1').value = recordData.Desarrollo_Integral;
+    document.getElementById('gestionProceso1').value = recordData.Gestion_Proceso;
+    document.getElementById('ingles1').value = recordData.Ingles;
+    document.getElementById('integradora1').value = recordData.Integradora;
+    document.getElementById('negociacion1').value = recordData.Negociacion;
+    document.getElementById('optativa1').value = recordData.Optativa;
+    document.getElementById('webProgresiva1').value = recordData.Web_Progresiva;
+
+    $('#editModal').data('recordId', recordId); // Guardar el ID en el modal
+    
+    $('#editModal').modal('show'); // Mostrar el modal de edición
+}
+
+// Modificar datos en la base de datos
+const modificar2 = document.getElementById('saveButton2');
+modificar.addEventListener('click', function(event) {
+    event.preventDefault();
+    
+    const studentId = document.getElementById('studentId1').value;
+    const unidad = document.getElementById('unidad1').value; // Obtener la unidad seleccionada
+    const desarrolloIntegral = document.getElementById('desarrolloIntegral1').value;
+    const gestionProceso = document.getElementById('gestionProceso1').value;
+    const ingles = document.getElementById('ingles1').value;
+    const integradora = document.getElementById('integradora1').value;
+    const negociacion = document.getElementById('negociacion1').value;
+    const optativa = document.getElementById('optativa1').value;
+    const webProgresiva = document.getElementById('webProgresiva1').value;
+
+    // Actualizar datos en la base de datos
+    update(ref(database, `/Alumnos/DGS/10/Calificaciones/${studentId}/U2`), {
+        Desarrollo_Integral: desarrolloIntegral,
+        Gestion_Proceso: gestionProceso,
+        Ingles: ingles,
+        Integradora: integradora,
+        Negociacion: negociacion,
+        Optativa: optativa,
+        Web_Progresiva: webProgresiva
+    })
+    .then(() => {
+    })
+    .catch((error) => {
+        alert("ERROR: Ha ocurrido un problema al actualizar los datos: " + error.message);
+    });
+});
+
+//3
+function openEditModal3(recordId, recordData, studentData) {
+    // Establecer los valores actuales en el modal de edición
+    document.getElementById('studentId1').value = recordId;
+    document.getElementById('unidad1').value = "U3"; 
+    document.getElementById('desarrolloIntegral1').value = recordData.Desarrollo_Integral;
+    document.getElementById('gestionProceso1').value = recordData.Gestion_Proceso;
+    document.getElementById('ingles1').value = recordData.Ingles;
+    document.getElementById('integradora1').value = recordData.Integradora;
+    document.getElementById('negociacion1').value = recordData.Negociacion;
+    document.getElementById('optativa1').value = recordData.Optativa;
+    document.getElementById('webProgresiva1').value = recordData.Web_Progresiva;
+
+    $('#editModal').data('recordId', recordId); // Guardar el ID en el modal
+    
+    $('#editModal').modal('show'); // Mostrar el modal de edición
+}
+
+
+// Modificar datos en la base de datos
+const modificar3 = document.getElementById('saveButton3');
+modificar.addEventListener('click', function(event) {
+    event.preventDefault();
+    
+    const studentId = document.getElementById('studentId1').value;
+    const unidad = document.getElementById('unidad1').value; // Obtener la unidad seleccionada
+    const desarrolloIntegral = document.getElementById('desarrolloIntegral1').value;
+    const gestionProceso = document.getElementById('gestionProceso1').value;
+    const ingles = document.getElementById('ingles1').value;
+    const integradora = document.getElementById('integradora1').value;
+    const negociacion = document.getElementById('negociacion1').value;
+    const optativa = document.getElementById('optativa1').value;
+    const webProgresiva = document.getElementById('webProgresiva1').value;
+
+    // Actualizar datos en la base de datos
+    update(ref(database, `/Alumnos/DGS/10/Calificaciones/${studentId}/U3`), {
+        Desarrollo_Integral: desarrolloIntegral,
+        Gestion_Proceso: gestionProceso,
+        Ingles: ingles,
+        Integradora: integradora,
+        Negociacion: negociacion,
+        Optativa: optativa,
+        Web_Progresiva: webProgresiva
+    })
+    .then(() => {
+        alert("Datos actualizados exitosamente.");
+        location.reload();
+    })
+    .catch((error) => {
+        alert("ERROR: Ha ocurrido un problema al actualizar los datos: " + error.message);
+    });
+});
+
+// Agregar el listener para el botón
+function openDeleteModal(recordId, recorduni) {
+        $('#deleteModal').data('recordId', recordId); // Guardar el ID en el modal
+        $('#deleteModal').data('recorduni', recorduni);
+        $('#deleteModal').modal('show'); // Mostrar el modal de eliminación
+    
+            const eliminarButton = document.getElementById('confirmDeleteButton');
+            eliminarButton.addEventListener('click', function(event) {
+                event.preventDefault();
+                // Referencia a la ruta del nodo que deseas eliminar
+                const refToDelete = ref(database, '/Alumnos/DGS/10/Calificaciones/' + recordId + recorduni);
+
+                // Eliminar el nodo
+                remove(refToDelete)
+                    .then(() => {
+                        alert("Documento eliminado exitosamente.");
+                        // Aquí podrías actualizar la interfaz para reflejar la eliminación sin recargar la página
+                        document.getElementById('deleteModal').style.display = 'none';
+                        location.reload();
+                    })
+                    .catch((error) => {
+                        console.error('Error al eliminar el documento: ', error);
+                        alert("ERROR: Ha ocurrido un problema al eliminar el documento: " + error.message);
+                    });
+            });
+        }
+
+
+</script> 
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script> 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script> 
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>     
 </body>
 </html>
