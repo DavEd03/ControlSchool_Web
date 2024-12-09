@@ -3,7 +3,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.2/fireba
 
 import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-auth.js";
 
-import { getDatabase, ref, set,onValue, update } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-database.js";
+import { getDatabase, ref, set,onValue, update, query, orderByChild, equalTo } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-database.js";
 
 
 const firebaseConfig = {
@@ -47,9 +47,29 @@ submit.addEventListener("click", function (event) {
                 Matricula: Matricula1,
                 Password: password1,
                 Correo: Correo1
+            }).then(() => {
+                // Obtener materias por carrera y cuatrimestre
+                return obtenerMaterias(Carrera1, Cuatrimestre1);
             })
-            alert("Registro exitoso: Tus datos han sido guardados correctamente.");
-            limpiar();
+            .then((materias) => { 
+                const materiasObj = {}; materias.forEach((materia) => { // Asignar el nombre de la materia como clave y su valor 
+                materiasObj[materia.Nombre] = materia.Valor || 8; // Asignar valor 8 si no está disponible 
+                }); 
+                set(ref(database, '/Alumnos/' + Carrera1+'/'+Matricula1+'/U1'), 
+                { 
+                    ...materiasObj 
+                }); 
+                })
+            .then(() => {
+                set(ref(database, '/Expedientes/' + Matricula1),{
+                    Acta_nacimiento:NO,
+                    Certificado_Bach:NO,
+                    Curp:NO,
+                    RFC: NO,
+                    Comprobante_pago:NO,
+                }
+                )
+            })
         })
         .catch((error) => {
             const errorCode = error.code;
@@ -209,3 +229,33 @@ function loadData() {
             alert("ERROR: Ha ocurrido un problema al eliminar el documento: " + error.message);
         });
 });
+
+
+//obtener materias:
+async function obtenerMaterias(carrera, cuatrimestre) {
+    const db = getDatabase();
+    const materiasRef = ref(db, '/Materias');
+    const materiasQuery = query(materiasRef, orderByChild('Carrera'), equalTo(carrera));
+    const snapshot = await get(materiasQuery);
+    const materiasFiltradas = [];
+
+    if (snapshot.exists()) {
+        snapshot.forEach((childSnapshot) => {
+            const materia = childSnapshot.val();
+            if (materia.Cuatri === cuatrimestre) {
+                materiasFiltradas.push({
+                    ID: childSnapshot.key,
+                    Nombre: materia.Nombre,
+                    Cuatri: materia.Cuatri,
+                    Maestro: materia.Maestro,
+                    Carrera: materia.Carrera,
+                    Valor: materia.Valor // Suponiendo que 'Valor' está en la base de datos
+                });
+            }
+        });
+    } else {
+        console.log("No hay materias para esta carrera.");
+    }
+
+    return materiasFiltradas;
+}
