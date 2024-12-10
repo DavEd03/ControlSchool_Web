@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ejemplo de Firebase Realtime Database</title>
+  <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-database.js"></script>
+</head>
+<body>
+  <h1>Datos de Firebase</h1>
+  <button onclick="obtenerYMostrarDatos()">Obtener Datos</button>
+  <ul id="lista-datos"></ul>
+
+  <script>
+    // Tu configuración de Firebase
+    var firebaseConfig = {
+     apiKey: "AIzaSyBIb5nB7I0E5BM2ZaKYQHv0aSWCC2FMBGE",
+    authDomain: "controlschool-9fdc0.firebaseapp.com",
+    projectId: "controlschool-9fdc0",
+    storageBucket: "controlschool-9fdc0.appspot.com",
+    messagingSenderId: "999306012944",
+    appId: "1:999306012944:web:be011a6be63004f53b9d95"
+    };
+    // Inicializar Firebase
+    firebase.initializeApp(firebaseConfig);
+
+    const obtenerDatos = async (cuatrimestre, carrera) => {
+      try {
+        // Referencia a la base de datos en Firebase
+        const db = firebase.database().ref('Materias');
+        
+        // Obtener los datos de la referencia 'Materias'
+        const snapshot = await db.once('value');
+        
+        // Filtrar los datos obtenidos
+        const datos = [];
+        snapshot.forEach(childSnapshot => {
+          const data = childSnapshot.val();
+          if (data.Cuatrimestre === cuatrimestre && data.Carrera === carrera) {
+            datos.push(data);
+          }
+        });
+        
+        // Retornar los datos
+        return datos;
+
+      } catch (error) {
+        console.error('Error obteniendo los datos: ', error);
+      }
+    };
+
+    const obtenerYMostrarDatos = async () => {
+      const cuatrimestre = "1er Cuatrimestre";
+      const carrera = "Ingeniería";
+      const datos = await obtenerDatos(cuatrimestre, carrera);
+      const listaDatos = document.getElementById('lista-datos');
+      
+      listaDatos.innerHTML = ''; // Limpiar la lista actual
+      
+      datos.forEach(dato => {
+        const li = document.createElement('li');
+        li.textContent = `Nombre: ${dato.Nombre}, Cuatrimestre: ${dato.Cuatrimestre}, Carrera: ${dato.Carrera}`;
+        listaDatos.appendChild(li);
+      });
+    };
+  </script>
+</body>
+</html>

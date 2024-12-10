@@ -1,9 +1,9 @@
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-app.js";
 
-import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-auth.js";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-auth.js";
 
-import { getDatabase, ref, set,onValue, update, query, orderByChild, equalTo } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-database.js";
+import { getDatabase, ref, set,onValue, update, query, orderByChild, equalTo, get, remove } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-database.js";
 
 
 const firebaseConfig = {
@@ -24,6 +24,7 @@ const database = getDatabase(app);
 const submit = document.getElementById('btn-success');
 submit.addEventListener("click", function (event) {
     event.preventDefault();
+    
     const Correo1 = document.getElementById('correo').value;
     const password1 = document.getElementById('password').value;
     const Nombre1 = document.getElementById('nombre').value;
@@ -31,52 +32,64 @@ submit.addEventListener("click", function (event) {
     const Cuatrimestre1 = document.getElementById('cuatri').value;
     const Matricula1 = document.getElementById('matricula').value;
     const Apellidos1 = document.getElementById('apellido').value;
-
+    
     createUserWithEmailAndPassword(auth, Correo1, password1)
-        .then((userCredential) => {
-            // Signed in 
-            const user = userCredential.user;
-            const uid = user.uid;
+    .then((userCredential) => {
+        console.log("Usuario creado:", userCredential.user.uid); // Debug
+        const user = userCredential.user;
+        const uid = user.uid;
 
-            // Guardar los datos del usuario en Realtime Database
-            set(ref(database, '/Cuentas/' + uid), {
-                Apellidos: Apellidos1,
-                Carrera: Carrera1,
-                Nombre: Nombre1,
-                Cuatri: Cuatrimestre1,
-                Matricula: Matricula1,
-                Password: password1,
-                Correo: Correo1
-            }).then(() => {
-                // Obtener materias por carrera y cuatrimestre
-                return obtenerMaterias(Carrera1, Cuatrimestre1);
-            })
-            .then((materias) => { 
-                const materiasObj = {}; materias.forEach((materia) => { // Asignar el nombre de la materia como clave y su valor 
-                materiasObj[materia.Nombre] = materia.Valor || 8; // Asignar valor 8 si no está disponible 
-                }); 
-                set(ref(database, '/Alumnos/' + Carrera1+'/'+Matricula1+'/U1'), 
-                { 
-                    ...materiasObj 
-                }); 
-                })
-            .then(() => {
-                set(ref(database, '/Expedientes/' + Matricula1),{
-                    Acta_nacimiento:NO,
-                    Certificado_Bach:NO,
-                    Curp:NO,
-                    RFC: NO,
-                    Comprobante_pago:NO,
-                }
-                )
-            })
-        })
-        .catch((error) => {
-            const errorCode = error.code;
-            const errorMessage = error.message;
-            alert("ERROR: Ha ocurrido un problema al crear el usuario: " + error.message);
+        return set(ref(database, '/Cuentas/' + uid), {
+            Apellidos: Apellidos1,
+            Carrera: Carrera1,
+            Nombre: Nombre1,
+            Cuatri: Cuatrimestre1,
+            Matricula: Matricula1,
+            Password: password1,
+            Correo: Correo1
+        }).then(() => {
+            console.log("Datos del usuario guardados en /Cuentas/");
+            return user;
         });
+    })
+    .then((user) => {
+        const alumnoData = {
+            Desarrollo_Integral:"10",
+            Gestion_Proceso:"10",
+            Ingles:"10",
+            Optativa:"10",
+            Negociacion:"10", 
+            Integradora:"10",
+            Web_Progresiva:"10"
+        };
+
+        return set(ref(database, '/Alumnos/' + Carrera1 + '/' + Matricula1), alumnoData).then(() => {
+            console.log("Datos del alumno guardados en /Alumnos/");
+            return user;
+        });
+    })
+    .then((user) => {
+        return set(ref(database, '/Expedientes/' + Matricula1), {
+            Acta_nacimiento: 'NO',
+            Certificado_Bach: 'NO',
+            Curp: 'NO',
+            RFC: 'NO',
+            Comprobante_pago: 'NO'
+        }).then(() => {
+            console.log("Datos guardados en /Expedientes/"); // Debug
+        });
+    })
+    .then(() => {
+        alert("Registro exitoso: Tus datos han sido guardados correctamente.");
+        limpiar();
+    })
+    .catch((error) => {
+        console.error("Error:", error); // Debug
+        alert("ERROR: Ha ocurrido un problema al crear el usuario: " + error.message);
+    });
 });
+
+
 
 function loadData() {
     const dbRef = ref(database, 'Cuentas/');
@@ -123,7 +136,7 @@ function loadData() {
              deleteButton.textContent = 'Eliminar';
              deleteButton.className = 'btn btn-danger btn-sm';
              deleteButton.onclick = function() {
-                 openDeleteModal(uid); // Abre el modal de eliminación
+                 openDeleteModal(uid, data[uid]); // Abre el modal de eliminación
              };
  
              // Añadir los botones a la celda de acciones
@@ -156,7 +169,15 @@ function loadData() {
         $('#editModal').modal('show'); // Mostrar el modal de edición
     }
     
-    function openDeleteModal(recordId) {
+    function openDeleteModal(recordId, recordData) {
+        const uidInput = document.getElementById('uid2'); // Asegúrate de tener un campo oculto en el modal
+        uidInput.value = recordId;
+        document.getElementById('matricula2').value= recordData.Matricula;
+        document.getElementById('cuatri2').value= recordData.Cuatri;
+        document.getElementById('carrera2').value= recordData.Carrera;
+        document.getElementById('correo2').value= recordData.Correo;
+        document.getElementById('password2').value=recordData.Password;
+        
         $('#deleteModal').data('recordId', recordId); // Guardar el ID en el modal
         $('#deleteModal').modal('show'); // Mostrar el modal de eliminación
     }
@@ -208,33 +229,51 @@ function loadData() {
     
     })
     // Suponiendo que tienes el UID del documento que deseas eliminar
-    const eliminarButton = document.getElementById('eliminarButton');
+    const eliminarButton = document.getElementById('confirmDeleteButton');
     eliminarButton.addEventListener('click', function(event) {
-    event.preventDefault();
+        event.preventDefault();
+        
+        const uidToDelete = document.getElementById('uid2').value; // Obtener el UID del documento a eliminar
+        const matricula = document.getElementById('matricula2').value;
+        const carrera = document.getElementById('carrera2').value;
+        const cuatri = document.getElementById('cuatri2').value;
+        const email = document.getElementById('correo2').value; // Obtener el email del usuario
+        const password = document.getElementById('password2').value; // Obtener la contraseña del usuario
     
-    const uidToDelete = document.getElementById('uidToDelete').value; // Obtener el UID del documento a eliminar
+        // Reautenticación
+        signInWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+        const user = userCredential.user; // Usuario autenticado
+        const uid = user.uid; // Obtener el UID
 
-    // Referencia al documento que deseas eliminar
-    const docRef = doc(database, 'Cuentas', uidToDelete);
+        // Referencias a los documentos que deseas eliminar
+        const docRefCuentas = ref(database, `/Cuentas/${uidToDelete}`);
+        const docRefAlumnos = ref(database, `/alumnos/${carrera}/${cuatri}/${matricula}`);
+        const docRefExpedientes = ref(database, `/expedientes/${matricula}`);
 
-    // Eliminar el documento
-    deleteDoc(docRef)
-        .then(() => {
-            alert("Documento eliminado exitosamente.");
-            location.reload(); // Recargar la página o actualizar la vista
-        })
-        .catch((error) => {
-            const errorCode = error.code;
-            const errorMessage = error.message;
-            alert("ERROR: Ha ocurrido un problema al eliminar el documento: " + error.message);
+        // Eliminar los documentos
+        return Promise.all([
+            remove(docRefCuentas),
+            remove(docRefAlumnos),
+            remove(docRefExpedientes)
+        ]).then(() => {
+            // Eliminar la cuenta de Firebase Authentication
+            return user.delete();
         });
-});
-
+    })
+    .then(() => {
+        alert("Documentos y cuenta eliminados exitosamente.");
+        location.reload(); // Recargar la página o actualizar la vista
+    })
+    .catch((error) => {
+        alert("ERROR: Ha ocurrido un problema al eliminar los documentos o la cuenta: " + error.message);
+    });
+    });
 
 //obtener materias:
 async function obtenerMaterias(carrera, cuatrimestre) {
     const db = getDatabase();
-    const materiasRef = ref(db, '/Materias');
+    const materiasRef = ref(db, '/Materias/');
     const materiasQuery = query(materiasRef, orderByChild('Carrera'), equalTo(carrera));
     const snapshot = await get(materiasQuery);
     const materiasFiltradas = [];
@@ -244,12 +283,11 @@ async function obtenerMaterias(carrera, cuatrimestre) {
             const materia = childSnapshot.val();
             if (materia.Cuatri === cuatrimestre) {
                 materiasFiltradas.push({
-                    ID: childSnapshot.key,
+                    Codigo: childSnapshot.key,
                     Nombre: materia.Nombre,
-                    Cuatri: materia.Cuatri,
+                    Cuatrimestre: materia.Cuatri,
                     Maestro: materia.Maestro,
                     Carrera: materia.Carrera,
-                    Valor: materia.Valor // Suponiendo que 'Valor' está en la base de datos
                 });
             }
         });

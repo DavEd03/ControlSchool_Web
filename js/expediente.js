@@ -72,3 +72,24 @@ function loadData() {
     document.addEventListener('DOMContentLoaded', (event) => {
         loadData();
     });
+    function openEditModal(recordId, recordData) {
+        // Establecer los valores actuales en el modal de edición
+        document.getElementById('nombre1').value = recordData.Nombre;
+        document.getElementById('matricula1').value=recordData.Matricula;
+        document.getElementById('apellido1').value=recordData.Apellidos; 
+        document.getElementById('correo1').value=recordData.Correo;
+        document.getElementById('password1').value=recordData.Password;
+        document.getElementById('carrera1').value=recordData.Carrera;
+        document.getElementById('cuatri1').value=recordData.Cuatri;
+        document.getElementById('uid1').value=recordData.uid;
+        const uidInput = document.getElementById('uid1'); // Asegúrate de tener un campo oculto en el modal
+        uidInput.value = recordId;
+
+        $('#editModal').data('recordId', recordId); // Guardar el ID en el modal
+        $('#editModal').modal('show'); // Mostrar el modal de edición
+    }
+    
+    function openDeleteModal(recordId) {
+        $('#deleteModal').data('recordId', recordId); // Guardar el ID en el modal
+        $('#deleteModal').modal('show'); // Mostrar el modal de eliminación
+    }

@@ -50,45 +50,45 @@ const agregar=document.getElementById('btn-success');
 
 
     function loadData(){
-        const dbRef= ref(database, "Materias/");
+        const dbRef= ref(database, "/Materias/");
         onValue(dbRef, (snapshot) =>
         {
             const tableBody = document.getElementById("table-body").getElementsByTagName('tbody')[0];
             tableBody.innerHTML="";
             const data= snapshot.val();
-                for (const codigo in data){
+                for (const cod in data){
                     const row= tableBody.insertRow();
                     const cellCampo1= row.insertCell(0);
                     const cellCampo2= row.insertCell(1);
                     const cellCampo3= row.insertCell(2);
                     const cellCampo4= row.insertCell(3);
-                    const cellCampo5 = row.insertCell(4)
+                    const cellCampo5 = row.insertCell(4);
                     const cellActions= row.insertCell(5);
 
                     const hiddenInput= document.createElement('input');
-                    hiddenInput.type='hidden'
-                    hiddenInput.value= 'codigo';
-                    hiddenInput.id= 'uid'+ data;
-                    row.appendChild(hiddenInput)
+                    hiddenInput.type='hidden';
+                    hiddenInput.value= cod;
+                    hiddenInput.id= 'codigo-'+ cod;
+                    row.appendChild(hiddenInput);
 
                     
-                    cellCampo1.textContent=data[codigo].Codigo || "";
-                    cellCampo2.textContent=data[codigo].Nombre || "";
-                    cellCampo3.textContent=data[codigo].Cuatrimestre || "";
-                    cellCampo4.textContent=data[codigo].Carrera || "";
-                    cellCampo5.textContent=data[codigo].Maestro||"";
+                    cellCampo1.textContent=cod || "";
+                    cellCampo2.textContent=data[cod].Nombre || "";
+                    cellCampo3.textContent=data[cod].Cuatrimestre || "";
+                    cellCampo4.textContent=data[cod].Carrera || "";
+                    cellCampo5.textContent=data[cod].Maestro||"";
 
                     const editButton=document.createElement('button');
                     editButton.textContent = 'Editar';
-                    editButton.id="btn-open-modal"
+                    editButton.id="btn-open-modal";
                     editButton.onclick = function() {
-                    openEditModal(uid, data[uid]); // Abre el modal de edición
+                    openEditModal(cod, data[cod]); // Abre el modal de edición
                     };
                     const deleteButton = document.createElement('button');
                     deleteButton.textContent = 'Eliminar';
                     deleteButton.className = 'btn btn-danger btn-sm';
                     deleteButton.onclick = function() {
-                    openDeleteModal(uid); // Abre el modal de eliminación
+                    openDeleteModal(cod); // Abre el modal de eliminación
                      };
                      cellActions.appendChild(editButton);
                      cellActions.appendChild(deleteButton);
@@ -102,16 +102,17 @@ const agregar=document.getElementById('btn-success');
     });
 
     function openEditModal(recordId, recordData){
-        document.getElementById(nombre1).value=recordData.Nombre;
-        document.getElementById(maestro1).value=recordData.Maestro;
-        document.getElementById(carrera1).value=recordData.Carrera;
-        document.getElementById(cuatri1).value=recordData.Cuatrimestre;
-        
+        document.getElementById('nombre1').value=recordData.Nombre;
+        document.getElementById('maestro1').value=recordData.Maestro;
+        document.getElementById('carrera1').value=recordData.Carrera;
+        document.getElementById('cuatri1').value=recordData.Cuatrimestre;
+        const uidInput = document.getElementById('codigo1'); // Asegúrate de tener un campo oculto en el modal
+        uidInput.value = recordId;
         $('#editModal').data('recordId',recordId);
         $('#editModal').modal('show');
 
     }
-     function openDeleteModal(recordId, recordData){
+     function openDeleteModal(recordId){
         $('deleteModal').data('recordId', recordId);
         $('deleteModal').modal('show');
      }
