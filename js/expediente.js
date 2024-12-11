@@ -32,12 +32,16 @@ function loadData() {
                 const cellCampo3 = row.insertCell(2);
                 const cellCampo4 = row.insertCell(3);
                 const cellCampo5 = row.insertCell(4);
-                const cellCampo6 = row.insertCell(5)
+                const cellCampo6 = row.insertCell(5);
                 const cellActions = row.insertCell(6);
+
+                const hiddenInput= document.createElement('input');
+                hiddenInput.type='hidden';
+                hiddenInput.value= uid;
+                hiddenInput.id= 'codigo-'+ uid;
+                row.appendChild(hiddenInput);
                
-                
-                
-                 // Muestra el UID
+                // Muestra el UID
                 cellCampo1.textContent = uid|| ""; // Reemplaza 'campo1' con el nombre real del campo
                 cellCampo2.textContent = data[uid].Certificado_Bach || ""; // Reemplaza 'campo2' con el nombre real del campo
                 cellCampo3.textContent = data[uid].Comprobante_pago || ""; // Reemplaza 'campo3' con el nombre real del campo
@@ -48,12 +52,12 @@ function loadData() {
              // Crear botones para editar y eliminar
              const editButton = document.createElement('button');
              editButton.textContent = 'Editar';
-             editButton.id="btn-open-modal"
+             editButton.id="btn-open-modal";
              editButton.onclick = function() {
                  openEditModal(uid, data[uid]); // Abre el modal de edición
              };
  
-             const deleteButton = document.createElement('button');
+            const deleteButton = document.createElement('button');
              deleteButton.textContent = 'Eliminar';
              deleteButton.className = 'btn btn-danger btn-sm';
              deleteButton.onclick = function() {
@@ -61,8 +65,8 @@ function loadData() {
              };
  
              // Añadir los botones a la celda de acciones
-             cellActions.appendChild(editButton);
-             cellActions.appendChild(deleteButton);
+            cellActions.appendChild(editButton);
+            //cellActions.appendChild(deleteButton);
             
             }
         });
@@ -74,22 +78,71 @@ function loadData() {
     });
     function openEditModal(recordId, recordData) {
         // Establecer los valores actuales en el modal de edición
-        document.getElementById('nombre1').value = recordData.Nombre;
-        document.getElementById('matricula1').value=recordData.Matricula;
-        document.getElementById('apellido1').value=recordData.Apellidos; 
-        document.getElementById('correo1').value=recordData.Correo;
-        document.getElementById('password1').value=recordData.Password;
-        document.getElementById('carrera1').value=recordData.Carrera;
-        document.getElementById('cuatri1').value=recordData.Cuatri;
-        document.getElementById('uid1').value=recordData.uid;
-        const uidInput = document.getElementById('uid1'); // Asegúrate de tener un campo oculto en el modal
-        uidInput.value = recordId;
+        document.getElementById('matricula1').value=recordId;
+        document.querySelector(`input[name="cert"][value="${recordData.Certificado_Bach === "SI" ? "SI" : "NO"}"]`).checked = true; 
+    document.querySelector(`input[name="pago"][value="${recordData.Comprobante_pago === "SI" ? "SI" : "NO"}"]`).checked = true;
+    document.querySelector(`input[name="rfc"][value="${recordData.RFC === "SI" ? "SI" : "NO"}"]`).checked = true;
+    document.querySelector(`input[name="curp"][value="${recordData.Curp === "SI" ? "SI" : "NO"}"]`).checked = true;
+    document.querySelector(`input[name="acta"][value="${recordData.Acta_nacimiento === "SI" ? "SI" : "NO"}"]`).checked = true;
 
         $('#editModal').data('recordId', recordId); // Guardar el ID en el modal
         $('#editModal').modal('show'); // Mostrar el modal de edición
     }
+        // Agregar el listener para el botón
+        function openDeleteModal(recordId) {
+            $('#deleteModal').data('recordId', recordId); // Guardar el ID en el modal
+            $('#deleteModal').modal('show'); // Mostrar el modal de eliminación
+        
+                const eliminarButton = document.getElementById('confirmDeleteButton');
+                eliminarButton.addEventListener('click', function(event) {
+                    event.preventDefault();
+                    // Referencia a la ruta del nodo que deseas eliminar
+                    const refToDelete = ref(database, 'Expedientes/' + recordId);
     
-    function openDeleteModal(recordId) {
-        $('#deleteModal').data('recordId', recordId); // Guardar el ID en el modal
-        $('#deleteModal').modal('show'); // Mostrar el modal de eliminación
-    }
+                    // Eliminar el nodo
+                    remove(refToDelete)
+                        .then(() => {
+                            alert("Documento eliminado exitosamente.");
+                            // Aquí podrías actualizar la interfaz para reflejar la eliminación sin recargar la página
+                            document.getElementById('deleteModal').style.display = 'none';
+                            location.reload();
+                        })
+                        .catch((error) => {
+                            console.error('Error al eliminar el documento: ', error);
+                            alert("ERROR: Ha ocurrido un problema al eliminar el documento: " + error.message);
+                        });
+                });
+            }
+            const modificar = document.getElementById('saveButton');
+            modificar.addEventListener('click', function(event) {
+                event.preventDefault();
+            
+                // Obtener el ID del expediente
+                const expedienteId = document.getElementById("matricula1").value;
+            
+                // Obtener los valores de los radio buttons seleccionados
+                const actanw = document.querySelector('input[name="acta"]:checked')?.value;
+                const rfcnw = document.querySelector('input[name="rfc"]:checked')?.value;
+                const pagonw = document.querySelector('input[name="pago"]:checked')?.value;
+                const curpnw = document.querySelector('input[name="curp"]:checked')?.value;
+                const certnw = document.querySelector('input[name="cert"]:checked')?.value;
+            
+                // Crear un objeto con los datos a actualizar
+                const dataToUpdate = {
+                    Acta_nacimiento: actanw,
+                    RFC: rfcnw,
+                    Comprobante_pago: pagonw,
+                    Curp: curpnw,
+                    Certificado_Bach: certnw
+                };
+            
+                // Actualizar los datos en la base de datos
+                update(ref(database, 'Expedientes/' + expedienteId), dataToUpdate)
+                    .then(() => {
+                        alert("Datos Actualizados correctamente");
+                        location.reload();
+                    })
+                    .catch((error) => {
+                        alert("Ocurrió un problema, intente más tarde");
+                    });
+            });

@@ -113,8 +113,10 @@ const agregar=document.getElementById('btn-success');
 
     }
      function openDeleteModal(recordId){
-        $('deleteModal').data('recordId', recordId);
-        $('deleteModal').modal('show');
+        const uidInput = document.getElementById('codigo2'); // Asegúrate de tener un campo oculto en el modal
+        uidInput.value = recordId;
+        $('#deleteModal').data('recordId', recordId);
+        $('#deleteModal').modal('show');
      }
 
      const modificar=document.getElementById('saveButton');
@@ -141,3 +143,21 @@ const agregar=document.getElementById('btn-success');
         });
         
      })
+
+     const eliminarRegistro = document.getElementById('confirmDeleteButton');
+     eliminarRegistro.addEventListener('click', (event) => {
+         event.preventDefault();
+         
+         const materiaId = document.getElementById('codigo2').value;
+         const docRefmateria = ref(database, `/Materias/${materiaId}`);
+         
+         remove(docRefmateria)
+             .then(() => {
+                 alert("Datos eliminados correctamente");
+                 location.reload();
+             })
+             .catch((error) => {
+                 console.error("Error al eliminar el registro:", error);
+                 alert("Ocurrió un problema, intente más tarde");
+             });
+     });

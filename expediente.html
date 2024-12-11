@@ -29,20 +29,7 @@
         </aside>
            
         <div class="tabla-contenedor">
-            <span class="banner">
-                Mostrar por: 
-                <p>
-                   Carrera <select id="mostrar" name="Carrera" title="1">
-
-                </select>
-                </p>
-                <p>
-                    
-                    Cuatrimestre<select id="mostrar2" name="Cautrim" title="2">
-                        
-                    </select>
-                </p>
-            </span>
+          
             <span class="tabla1">
               <h2>Expediente</h2>
             <table id="table-body" border="1">
@@ -53,6 +40,7 @@
                 <th>Comprobante de Pago</th>
                 <th>CURP</th>
                 <th>Acta de Nacimiento</th>
+                <th>RFC</th>
                 <th>Acciones</th>
              </tr> 
                 </thead>
@@ -81,7 +69,6 @@
                     <td colspan="2">
                         <label>Matrícula:</label>
                         <input type="text" name="matricula" id="matricula1">
-                        <input type="hidden" name="uid" id="uid1">
                     </td>
                 </tr>
                 <tr>
@@ -95,13 +82,13 @@
                         <input type="radio" name="pago" value="NO">Sin Entregar</td>
                 </tr>
                 <tr>
-                    <td><label>RFC:</label></td></td>
+                    <td><label>RFC:</label></td>
                     <td><input type="radio" name="rfc" value="SI">Entregado
                         <input type="radio" name="rfc" value="NO">Sin Entregar</td>
                 <tr>
                     <td><label>CURP:</label></td>
                     <td><input type="radio" name="curp" value="SI">Entregado
-                        <input type="radio" name="curp" value="NO">SIn Entregar</td>
+                        <input type="radio" name="curp" value="NO">Sin Entregar</td>
                 </tr>
                 <tr>
                     <td><label>Acta de Nacimiento</label></td>

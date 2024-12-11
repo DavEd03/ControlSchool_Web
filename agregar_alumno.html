@@ -33,14 +33,31 @@
           <span class="banner">
             Mostrar por: 
             <p>
-               Carrera <select id="mostrar" name="carrera" title="1">
-
+               Carrera: <select id="mostrar1" name="mostrar1" title="Carrera">
+                <option value="">---Seleccione------</option>
+                <option value="DGS">Desarrollo en Gestion de Software</option>
+                <option value="MECA">Mecatronica</option>
+                <option value="ASYP">Agricultura</option>
+                <option value="LINYM">Inovación de Negocios</option>
+                <option value="DN">Desarrollo de Negocios</option>
+                <option value="TICS">Tecnologías de la Información </option>
+                <option value="OCIS">Operaciones Comerciales Inter.</option>
+                <option value="LI">Logistica Internacional</option>
             </select>
             </p>
             <p>
                 
-                Cuatrimestre<select id="mostrar2" name="cuatri" title="2">
-                    
+                Cuatrimestre: <select id="mostrar2" name="mostrar2" title="Cuatrimestre">
+                    <option value="">---Seleccione------</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
                 </select>
             </p>
         </span>
@@ -48,7 +65,7 @@
               <h2>Agregar Alumno</h2>
             <table id="table-body" border="1" cellspacing="1">
                 <thead>
-                    <tr>
+                <tr>
                 <th>Matrícula</th>
                 <th>Nombre</th>
                 <th>Apellido</th>
@@ -60,7 +77,7 @@
              </tr>
                 </thead>
              
-             <tbody>
+             <tbody id="table-body">
 
              </tbody>
             </table>
@@ -185,26 +202,35 @@
                 </tr>
                 <tr>
                     <td>
-                    <label>Carrera:</label>
-                        <select name="carrera" id="carrera1">
-                            <option value="">---Seleccione------</option>
-                            <option value="DGS">Desarrollo en Gestion de Software</option>
-                            <option value="MECA">Mecatronica</option>
-                            <option value="ASYP">Agricultura</option>
-                            <option value="LINYM">Mercadotecnia</option>
-                            <option value="DN">Desarrollo de Negocios</option>
-                        </select>
-                    </td>
-                     <td>
-                        <label>Cuatrimestre:</label>
-                        <select name="cuatri" id="cuatri1">
-                            <option value="">---Seleccione------</option>
-                            <option value="1">1</option>
-                            <option value="4">4</option>
-                            <option value="7">7</option>
-                            <option value="10">10</option>
-                        </select>
-                    </td>
+                        <label>Carrera:</label>
+                            <select name="carrera" id="carrera">
+                                <option value="">---Seleccione------</option>
+                                <option value="DGS">Desarrollo en Gestion de Software</option>
+                                <option value="MECA">Mecatronica</option>
+                                <option value="ASYP">Agricultura</option>
+                                <option value="LINYM">Inovación de Negocios</option>
+                                <option value="DN">Desarrollo de Negocios</option>
+                                <option value="TICS">Tecnologías de la Información </option>
+                                <option value="OCIS">Operaciones Comerciales Inter.</option>
+                                <option value="LI">Logistica Internacional</option>
+                            </select>
+                        </td>
+                         <td>
+                            <label>Cuatrimestre:</label>
+                            <select name="cuatri" id="cuatri">
+                                <option value="">---Seleccione------</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                            </select>
+                        </td>
                 </tr>
             </table>
           </form>
@@ -245,7 +271,7 @@
   </div>
 
 
-
+  <script src="/js/search.js"></script>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script> 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script> 
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>

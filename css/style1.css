@@ -1,5 +1,6 @@
 body{
     font-family: "Josefin Sans", sans-serif;
+    width: 100%;
 }
 header{
     width: 100%;
@@ -31,7 +32,7 @@ ul{
 ul li{
     display: block;
     padding: 5px;
-    margin: auto;
+    margin: 10px;
     margin-left: 5px;
     background-color: #D9D9D9;
     border-radius: 5px;
@@ -57,7 +58,7 @@ ul li a{
 }
 a{
     padding: 10px;
-    text-decoration: none;
+    text-decoration: none !important;
     color: black !important;
     border-radius: 8px;
 }
@@ -66,7 +67,7 @@ a:hover{
     opacity: 0.8;
 }
 .banner{
-    width: 50%;
+    width: 70%;
     height: 30%;
     align-content: center;
     background-color: #D9D9D9;
@@ -74,6 +75,7 @@ a:hover{
     align-items: center;
     display: flex;
     flex-direction: row;
+    padding: 1%;
     border-radius: 20px;
     margin-left: 100px;
     border-color: black;
@@ -123,9 +125,12 @@ p{
 .btn-add{
     border-color: #11A1C9;
     background-color: #E3EFF3;
-    border-radius: 10px;
+    border-radius: 8px;
     font-size: 20px;
-    padding: 50px,100px;
+    padding: 60px, 110px;
     margin-top: 5%;
     margin-left: 80%;
+}
+.btn-add:hover{
+    background-color: #11A1C9;
 }
